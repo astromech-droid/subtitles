@@ -1,5 +1,6 @@
 import settings as s
 from lib.download_vtt import download
+from lib.parse_vtt import parse_and_save
 
 # url = "https://vod-akc-ap-north-1.media.dssott.com/ps01/disney/04cc23e7-6795-4239-afd8-b9ef95b6af9d/r/f914d404-8913-46c3-8db7-c1422f2baa13/d678-MAIN/06/subtitles_1/seg_00000.vtt"
 # dirname = "modern_family_s7e9"
@@ -7,8 +8,12 @@ from lib.download_vtt import download
 # dirname = "modern_family_s7e10"
 # url = "https://vod-akc-ap-north-1.media.dssott.com/ps01/disney/b8fc3a24-ca32-4879-97f7-befffaa7003c/r/9d54313d-40a8-4327-accd-88e6ba0d3a87/af0a-MAIN/06/subtitles_1/seg_00000.vtt"
 # dirname = "modern_family_s7e11"
-url = "https://vod-akc-ap-north-1.media.dssott.com/ps01/disney/9d81e6fe-6f53-40da-a620-b66e720a47be/r/d5f4cde3-14e1-47bf-8bad-035f15e844f4/b378-MAIN/06/subtitles_1/seg_00000.vtt"
-dirname = "modern_family_s7e12"
+# url = "https://vod-akc-ap-north-1.media.dssott.com/ps01/disney/9d81e6fe-6f53-40da-a620-b66e720a47be/r/d5f4cde3-14e1-47bf-8bad-035f15e844f4/b378-MAIN/06/subtitles_1/seg_00000.vtt"
+# dirname = "modern_family_s7e12"
+
+url = "https://vod-akc-ap-north-1.media.dssott.com/ps01/disney/87fc7fcd-e650-48ee-8229-82c2a48b6c7b/r/f6a6f818-4c7b-47ea-9243-cb13f85875a7/d686-MAIN/06/subtitles_1/seg_00000.vtt"
+dirname = "modern_family_s1e1"
 service = s.Service.DISNEYPLUS
 
 download(url, dirname, service)
+parse_and_save(dirname, service)
