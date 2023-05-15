@@ -29,7 +29,12 @@ def parse(lines: list) -> list:
     for line in soup.find_all("p"):
         seconds: float = to_int(line.get("begin")) / 10000000
         starttime = to_formatted_time(seconds)
-        text = line.text
+        contents_str = []
+        for c in line.contents:
+            if c.text != "":
+                contents_str.append(c.text)
+
+        text = " ".join(contents_str)
         new_lines.append(f"{starttime}: {text}\n")
 
     return new_lines
