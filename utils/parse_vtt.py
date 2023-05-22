@@ -2,17 +2,17 @@ import os
 
 import settings as s
 
-from utils import parse
+from utils import parsers
 
 
 def _parse(lines: list) -> list:
-    lines = parse.remove_linenumbers(lines)
-    lines = parse.remove_headers(lines)
-    lines = parse.remove_headers(lines)
-    lines = parse.remove_blanklines(lines)
-    lines = parse.extruct_starttime(lines)
-    lines = parse.put_starttime_on_alllines(lines)
-    lines = parse.merge_multilines(lines)
+    lines = parsers.remove_linenumbers(lines)
+    lines = parsers.remove_headers(lines)
+    lines = parsers.remove_headers(lines)
+    lines = parsers.remove_blanklines(lines)
+    lines = parsers.extruct_starttime(lines)
+    lines = parsers.put_starttime_on_alllines(lines)
+    lines = parsers.merge_multilines(lines)
 
     return lines
 
@@ -54,7 +54,7 @@ def parse_and_save(dirname, service):
         # Netflix's vtt is encoded by UTF-8 with BOM.
         # So using "utf-8-sig"
         with open(vtt_path, "r", encoding="utf-8-sig") as f_input:
-            lines = parse(f_input.readlines())
+            lines = parsers(f_input.readlines())
 
         with open(out_path, "w") as f_output:
             f_output.writelines(lines)

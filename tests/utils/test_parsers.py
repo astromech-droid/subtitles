@@ -2,7 +2,7 @@ import os
 
 import settings as s
 
-from utils import parse
+from utils import parsers
 
 
 def test_remove_linenumbers():
@@ -19,7 +19,7 @@ def test_remove_linenumbers():
     with open(test_output_file, "r", encoding="utf-8-sig") as f_output:
         test_output = f_output.readlines()
 
-    assert parse.remove_linenumbers(test_input) == test_output
+    assert parsers.remove_linenumbers(test_input) == test_output
 
 
 def test_remove_headers():
@@ -36,7 +36,7 @@ def test_remove_headers():
     with open(test_output_file, "r", encoding="utf-8-sig") as f_output:
         test_output = f_output.readlines()
 
-    assert parse.remove_headers(test_input) == test_output
+    assert parsers.remove_headers(test_input) == test_output
 
 
 def test_remove_blanklines():
@@ -53,7 +53,7 @@ def test_remove_blanklines():
     with open(test_output_file, "r") as f_output:
         test_output = f_output.readlines()
 
-    assert parse.remove_blanklines(test_input) == test_output
+    assert parsers.remove_blanklines(test_input) == test_output
 
 
 def test_extruct_starttime():
@@ -70,7 +70,7 @@ def test_extruct_starttime():
     with open(test_output_file, "r") as f_output:
         test_output = f_output.readlines()
 
-    assert parse.extruct_starttime(test_input) == test_output
+    assert parsers.extruct_starttime(test_input) == test_output
 
 
 def test_put_starttime_on_alllines():
@@ -87,7 +87,7 @@ def test_put_starttime_on_alllines():
     with open(test_output_file, "r") as f_output:
         test_output = f_output.readlines()
 
-    assert parse.put_starttime_on_alllines(test_input) == test_output
+    assert parsers.put_starttime_on_alllines(test_input) == test_output
 
 
 def test_merge_multilines():
@@ -104,4 +104,4 @@ def test_merge_multilines():
     with open(test_output_file, "r") as f_output:
         test_output = f_output.readlines()
 
-    assert parse.merge_multilines(test_input) == test_output
+    assert parsers.merge_multilines(test_input) == test_output
