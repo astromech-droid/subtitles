@@ -1,7 +1,7 @@
 import os
 
-import lib.parse_vtt as parse_vtt
 import settings as s
+import utils.parse_vtt as parse_vtt
 
 
 def test_remove_linenumbers():

@@ -1,7 +1,7 @@
 import settings as s
-from lib.download_vtt import download
-from lib.parse_vtt import parse_and_save as vtt_parse_and_save
-from lib.parse_xml import parse_and_save as xml_parse_and_save
+from utils.download_vtt import download
+from utils.parse_vtt import parse_and_save as vtt_parse_and_save
+from utils.parse_xml import parse_and_save as xml_parse_and_save
 
 """
 # For DisneyPlus
