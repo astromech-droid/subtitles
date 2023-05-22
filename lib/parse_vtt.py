@@ -5,6 +5,19 @@ import re
 import settings as s
 
 
+def remove_linenumbers(lines: list) -> list:
+    new_lines = []
+
+    for line in lines:
+        if re.match(r"^\d+\n$", line):
+            pass
+
+        else:
+            new_lines.append(line)
+
+    return new_lines
+
+
 def remove_headers(lines: list) -> list:
     for line in copy.copy(lines):
         starttime = re.match(r"(^\d{2}:\d{2}:\d{2}.\d{3}) -->.*", line)
@@ -85,6 +98,8 @@ def merge_multilines(lines: list) -> list:
 
 
 def parse(lines: list) -> list:
+    lines = remove_linenumbers(lines)
+    lines = remove_headers(lines)
     lines = remove_headers(lines)
     lines = remove_blanklines(lines)
     lines = extruct_starttime(lines)
@@ -117,3 +132,21 @@ def parse_and_save(dirname, service):
 
             with open(out_path, "w") as f_output:
                 f_output.writelines(lines)
+
+    elif service == s.Service.NETFLIX:
+        vtt_dir = os.path.join(s.OUT_DIR, dirname)
+        txt_dir = os.path.join(s.TXT_DIR, dirname)
+
+        vtt_path = os.path.join(vtt_dir, "subtitle.vtt")
+        out_path = os.path.join(txt_dir, "subtitle.txt")
+
+        if not os.path.exists(txt_dir):
+            os.makedirs(txt_dir)
+
+        # Netflix's vtt is encoded by UTF-8 with BOM.
+        # So using "utf-8-sig"
+        with open(vtt_path, "r", encoding="utf-8-sig") as f_input:
+            lines = parse(f_input.readlines())
+
+        with open(out_path, "w") as f_output:
+            f_output.writelines(lines)

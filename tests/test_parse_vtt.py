@@ -4,14 +4,27 @@ import lib.parse_vtt as parse_vtt
 import settings as s
 
 
+def test_remove_linenumbers():
+    test_input_file = os.path.join(s.TEST_DATA_DIR, "remove_linenumbers_before.vtt")
+    test_output_file = os.path.join(s.TEST_DATA_DIR, "remove_linenumbers_after.vtt")
+
+    with open(test_input_file, "r", encoding="utf-8-sig") as f_input:
+        test_input = f_input.readlines()
+
+    with open(test_output_file, "r", encoding="utf-8-sig") as f_output:
+        test_output = f_output.readlines()
+
+    assert parse_vtt.remove_linenumbers(test_input) == test_output
+
+
 def test_remove_headers():
     test_input_file = os.path.join(s.TEST_DATA_DIR, "remove_headers_before.vtt")
     test_output_file = os.path.join(s.TEST_DATA_DIR, "remove_headers_after.vtt")
 
-    with open(test_input_file, "r") as f_input:
+    with open(test_input_file, "r", encoding="utf-8-sig") as f_input:
         test_input = f_input.readlines()
 
-    with open(test_output_file, "r") as f_output:
+    with open(test_output_file, "r", encoding="utf-8-sig") as f_output:
         test_output = f_output.readlines()
 
     assert parse_vtt.remove_headers(test_input) == test_output
