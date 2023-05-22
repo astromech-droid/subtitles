@@ -4,78 +4,60 @@ from utils import files, parsers
 
 
 def test_remove_linenumbers():
-    test_input_file = files.find(s.TEST_DATA_DIR, "remove_linenumbers_before.vtt")
-    test_output_file = files.find(s.TEST_DATA_DIR, "remove_linenumbers_after.vtt")
+    input_path: str = files.find(s.TEST_DATA_DIR, "remove_linenumbers_before.vtt")
+    output_path: str = files.find(s.TEST_DATA_DIR, "remove_linenumbers_after.vtt")
 
-    with open(test_input_file, "r", encoding="utf-8-sig") as f_input:
-        test_input = f_input.readlines()
+    input: list = files.get_lines(input_path)
+    output: list = files.get_lines(output_path)
 
-    with open(test_output_file, "r", encoding="utf-8-sig") as f_output:
-        test_output = f_output.readlines()
-
-    assert parsers.remove_linenumbers(test_input) == test_output
+    assert parsers.remove_linenumbers(input) == output
 
 
 def test_remove_headers():
-    test_input_file = files.find(s.TEST_DATA_DIR, "remove_headers_before.vtt")
-    test_output_file = files.find(s.TEST_DATA_DIR, "remove_headers_after.vtt")
+    input_path: str = files.find(s.TEST_DATA_DIR, "remove_headers_before.vtt")
+    output_path: str = files.find(s.TEST_DATA_DIR, "remove_headers_after.vtt")
 
-    with open(test_input_file, "r", encoding="utf-8-sig") as f_input:
-        test_input = f_input.readlines()
+    input: list = files.get_lines(input_path)
+    output: list = files.get_lines(output_path)
 
-    with open(test_output_file, "r", encoding="utf-8-sig") as f_output:
-        test_output = f_output.readlines()
-
-    assert parsers.remove_headers(test_input) == test_output
+    assert parsers.remove_headers(input) == output
 
 
 def test_remove_blanklines():
-    test_input_file = files.find(s.TEST_DATA_DIR, "remove_blanklines_before.vtt")
-    test_output_file = files.find(s.TEST_DATA_DIR, "remove_blanklines_after.vtt")
+    input_path: str = files.find(s.TEST_DATA_DIR, "remove_blanklines_before.vtt")
+    output_path: str = files.find(s.TEST_DATA_DIR, "remove_blanklines_after.vtt")
 
-    with open(test_input_file, "r") as f_input:
-        test_input = f_input.readlines()
+    input: list = files.get_lines(input_path)
+    output: list = files.get_lines(output_path)
 
-    with open(test_output_file, "r") as f_output:
-        test_output = f_output.readlines()
-
-    assert parsers.remove_blanklines(test_input) == test_output
+    assert parsers.remove_blanklines(input) == output
 
 
 def test_extruct_starttime():
-    test_input_file = files.find(s.TEST_DATA_DIR, "extruct_starttime_before.vtt")
-    test_output_file = files.find(s.TEST_DATA_DIR, "extruct_starttime_after.vtt")
+    input_path: str = files.find(s.TEST_DATA_DIR, "extruct_starttime_before.vtt")
+    output_path: str = files.find(s.TEST_DATA_DIR, "extruct_starttime_after.vtt")
 
-    with open(test_input_file, "r") as f_input:
-        test_input = f_input.readlines()
+    input: list = files.get_lines(input_path)
+    output: list = files.get_lines(output_path)
 
-    with open(test_output_file, "r") as f_output:
-        test_output = f_output.readlines()
-
-    assert parsers.extruct_starttime(test_input) == test_output
+    assert parsers.extruct_starttime(input) == output
 
 
 def test_put_starttime_on_alllines():
-    test_input_file = files.find(s.TEST_DATA_DIR, "put_starttime_on_alllines_before.txt")
-    test_output_file = files.find(s.TEST_DATA_DIR, "put_starttime_on_alllines_after.txt")
+    input_path: str = files.find(s.TEST_DATA_DIR, "put_starttime_on_alllines_before.txt")
+    output_path: str = files.find(s.TEST_DATA_DIR, "put_starttime_on_alllines_after.txt")
 
-    with open(test_input_file, "r") as f_input:
-        test_input = f_input.readlines()
+    input: list = files.get_lines(input_path)
+    output: list = files.get_lines(output_path)
 
-    with open(test_output_file, "r") as f_output:
-        test_output = f_output.readlines()
-
-    assert parsers.put_starttime_on_alllines(test_input) == test_output
+    assert parsers.put_starttime_on_alllines(input) == output
 
 
 def test_merge_multilines():
-    test_input_file = files.find(s.TEST_DATA_DIR, "merge_multilines_before.txt")
-    test_output_file = files.find(s.TEST_DATA_DIR, "merge_multilines_after.txt")
+    input_path: str = files.find(s.TEST_DATA_DIR, "merge_multilines_before.txt")
+    output_path: str = files.find(s.TEST_DATA_DIR, "merge_multilines_after.txt")
 
-    with open(test_input_file, "r") as f_input:
-        test_input = f_input.readlines()
+    input: list = files.get_lines(input_path)
+    output: list = files.get_lines(output_path)
 
-    with open(test_output_file, "r") as f_output:
-        test_output = f_output.readlines()
-
-    assert parsers.merge_multilines(test_input) == test_output
+    assert parsers.merge_multilines(input) == output

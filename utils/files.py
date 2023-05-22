@@ -7,3 +7,8 @@ def find(dirname: str, filename: str) -> str:
         return ""
     else:
         return pathes[0]._str
+
+
+def get_lines(path: str) -> list:
+    with open(path, "r", encoding="utf-8-sig") as f:
+        return f.readlines()
