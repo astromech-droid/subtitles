@@ -12,7 +12,7 @@ for path in pathes:
 ```
 
 # Tips
-#### How to download subtitles from Netflix
+#### How to get url of subtitles from Netflix
 * Login to netflix
 * Open developer tools
 * Open network tab
