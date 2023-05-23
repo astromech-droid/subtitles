@@ -1,7 +1,6 @@
 import os
-from enum import Enum
 
-OUT_DIR = "vtt"
+VTT_DIR = "vtt"
 XML_DIR = "xml"
 TXT_DIR = "txt"
 TEST_DIR = "tests"
