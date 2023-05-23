@@ -1,9 +1,11 @@
 import math
+import os
 import re
 
 from bs4 import BeautifulSoup
 from bs4.element import NavigableString, Tag
-from subtitles.utils import files, parsers
+from subtitles.conf import settings as s
+from subtitles.utils import files, http, parsers
 
 
 def _to_int(starttime: str) -> int:
@@ -61,3 +63,34 @@ def parse_subtitles(from_path: str, to_path: str) -> bool:
     result: bool = files.save_lines(lines, to_path)
 
     return result
+
+
+def download_all_subtitles(url: str, title: str, service: str) -> list:
+    dirname: str = os.path.join(s.XML_DIR, title)
+    urls: list = http.get_urls(url, service)
+    pathes: list = http.download_all_subtitles(urls, dirname, service)
+    return pathes
+
+
+def parse_all_subtitles(pathes: list, title: str) -> list:
+    to_pathes = []
+
+    for path in pathes:
+        dirname: str = os.path.join(s.TXT_DIR, title)
+        filename = s.DEFAULT_TXT_FILENAME
+        to_path: str = os.path.join(dirname, filename)
+
+        if parse_subtitles(from_path=path, to_path=to_path):
+            to_pathes.append(to_path)
+
+        else:
+            break
+
+    return to_pathes
+
+
+def run(url: str, title: str, service: str) -> list:
+    pathes = download_all_subtitles(url, title, service)
+    to_pathes = parse_all_subtitles(pathes, title)
+
+    return to_pathes
