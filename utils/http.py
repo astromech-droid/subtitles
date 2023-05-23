@@ -48,7 +48,7 @@ def download_all_subtitles(urls: list, dirname: str, service: str) -> list:
             filename: str = re.match(r"^https://.*/(.*)", url)[1]
 
         elif service == s.SERVICE_NETFLIX:
-            filename: str = s.DEFAULT_FILENAME
+            filename: str = s.DEFAULT_XML_FILENAME
 
         else:
             filename: str = "UNKOWN_SERVICE.txt"

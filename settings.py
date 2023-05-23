@@ -11,4 +11,5 @@ SERVICE_NETFLIX = "netflix"
 
 MAX_SEGMENTS = 75  # 3h = 360min, 5min/vtt, 360/5 = 75vtt
 
-DEFAULT_FILENAME = "subtitle.txt"
+DEFAULT_TXT_FILENAME = "subtitle.txt"
+DEFAULT_XML_FILENAME = "subtitle.xml"

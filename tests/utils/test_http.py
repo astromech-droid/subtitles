@@ -49,11 +49,12 @@ def test_get_urls_netflix():
 
 def test_download_all_subtitles(tmp_path):
     url = "https://raw.githubusercontent.com/astromech-droid/subtitles/main/tests/data/utils/http/vtt/seg_00000.vtt"
-    urls = http.get_urls(url, s.SERVICE_DISNEYPLUS)
+    service = s.SERVICE_DISNEYPLUS
+    urls = http.get_urls(url, service)
 
     expected: list = [
         os.path.join(tmp_path._str, "seg_00000.vtt"),
         os.path.join(tmp_path._str, "seg_00001.vtt"),
     ]
 
-    assert http.download_all_subtitles(urls, tmp_path) == expected
+    assert http.download_all_subtitles(urls, tmp_path, service) == expected
