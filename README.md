@@ -1,6 +1,6 @@
 # Usage
 ```python
-from subtitles.core.Subtitles import Subtitles
+from subtitles.Subtitles import Subtitles
 
 url = "https://sample.com/test.vtt"
 title = "disneyplus_s1e1"
