@@ -1,5 +1,6 @@
 import os
 import re
+import time
 
 import requests
 import settings as s
@@ -48,5 +49,7 @@ def download_all_subtitles(urls: list, dirname: str) -> list:
 
         if result is False:
             break
+
+        time.sleep(1)
 
     return os.listdir(dirname)
