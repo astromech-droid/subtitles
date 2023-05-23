@@ -1,4 +1,4 @@
-from subtitles.conf import settings as settings
+from subtitles.conf import settings
 from subtitles.utils import files
 
 

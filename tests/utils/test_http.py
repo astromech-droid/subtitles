@@ -1,12 +1,12 @@
 import os
 
-from subtitles.conf import settings as s
+from subtitles.conf import settings
 from subtitles.utils import files, http
 
 
 def test_download_subtitles_save(tmp_path):
     filename: str = "download_subtitles.txt"
-    path: str = files.find_path(s.TEST_DATA_DIR, filename)
+    path: str = files.find_path(settings.TEST_DATA_DIR, filename)
     url: str = f"https://raw.githubusercontent.com/astromech-droid/subtitles/main/{path}"
 
     http.download_subtitles(url, tmp_path / filename)
@@ -17,7 +17,7 @@ def test_download_subtitles_save(tmp_path):
 
 def test_download_subtitles_true(tmp_path):
     filename: str = "download_subtitles.txt"
-    path: str = files.find_path(s.TEST_DATA_DIR, filename)
+    path: str = files.find_path(settings.TEST_DATA_DIR, filename)
     url: str = f"https://raw.githubusercontent.com/astromech-droid/subtitles/main/{path}"
 
     assert http.download_subtitles(url, tmp_path / filename) is True
@@ -32,23 +32,23 @@ def test_download_subtitles_false(tmp_path):
 
 def test_get_urls_disneyplus():
     url: str = "https://test.com/subtitles/seg_00000.vtt"
-    path: str = files.find_path(s.TEST_DATA_DIR, "get_urls.txt")
+    path: str = files.find_path(settings.TEST_DATA_DIR, "get_urls.txt")
 
     expected: list = files.get_lines(path)
     expected: list = [x.strip() for x in expected]  # remove new line characters
 
-    assert http.get_urls(url, s.SERVICE_DISNEYPLUS) == expected
+    assert http.get_urls(url, settings.SERVICE_DISNEYPLUS) == expected
 
 
 def test_get_urls_netflix():
     url: str = "https://test.com/subtitles/seg_00000.vtt"
 
-    assert http.get_urls(url, s.SERVICE_NETFLIX) == [url]
+    assert http.get_urls(url, settings.SERVICE_NETFLIX) == [url]
 
 
 def test_download_all_subtitles(tmp_path):
-    service = s.SERVICE_DISNEYPLUS
-    urls = http.get_urls(s.TEST_VTT_URL, service)
+    service = settings.SERVICE_DISNEYPLUS
+    urls = http.get_urls(settings.TEST_VTT_URL, service)
 
     expected: list = [
         os.path.join(tmp_path._str, "seg_00000.vtt"),

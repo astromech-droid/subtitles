@@ -4,7 +4,7 @@ import re
 import time
 
 import requests
-from subtitles.conf import settings as s
+from subtitles.conf import settings
 from subtitles.utils import files
 
 
@@ -20,13 +20,13 @@ def _fetch_text(url: str) -> str:
 def get_urls(url: str, service: str) -> list:
     urls = []
 
-    if service == s.SERVICE_DISNEYPLUS:
-        for i in range(0, s.MAX_SEGMENTS):
+    if service == settings.SERVICE_DISNEYPLUS:
+        for i in range(0, settings.MAX_SEGMENTS):
             url_head = re.match(r"(^https://.*/)seg_\d{5}.vtt", url)[1]
             seg_filename = f"seg_{str(i).zfill(5)}.vtt"
             urls.append(f"{url_head}{seg_filename}")
 
-    elif service == s.SERVICE_NETFLIX:
+    elif service == settings.SERVICE_NETFLIX:
         urls.append(url)
 
     else:
@@ -43,11 +43,11 @@ def download_subtitles(url: list, path: str) -> bool:
 
 def download_all_subtitles(urls: list, dirname: str, service: str) -> list:
     for url in urls:
-        if service == s.SERVICE_DISNEYPLUS:
+        if service == settings.SERVICE_DISNEYPLUS:
             filename: str = re.match(r"^https://.*/(.*)", url)[1]
 
-        elif service == s.SERVICE_NETFLIX:
-            filename: str = s.DEFAULT_XML_FILENAME
+        elif service == settings.SERVICE_NETFLIX:
+            filename: str = settings.DEFAULT_XML_FILENAME
 
         else:
             filename: str = "UNKOWN_SERVICE.txt"
