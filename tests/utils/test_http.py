@@ -1,6 +1,6 @@
 import os
 
-import settings as s
+import conf.settings as s
 
 from utils import files, http
 

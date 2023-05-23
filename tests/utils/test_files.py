@@ -1,4 +1,4 @@
-import settings
+import conf.settings as settings
 
 from utils import files
 

@@ -1,7 +1,7 @@
 import os
 import re
 
-import settings as s
+import conf.settings as s
 from core import vtt2txt, xml2txt
 from utils import http
 

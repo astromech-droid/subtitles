@@ -3,8 +3,8 @@ import os
 import re
 import time
 
+import conf.settings as s
 import requests
-import settings as s
 
 from utils import files
 
