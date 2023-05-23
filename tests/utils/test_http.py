@@ -47,12 +47,8 @@ def test_get_urls_netflix():
 
 
 def test_download_all_subtitles(tmp_path):
-    url = (
-        "https://raw.githubusercontent.com/astromech-droid/subtitles/main/tests"
-        "/data/utils/http/vtt/seg_00000.vtt"
-    )
     service = s.SERVICE_DISNEYPLUS
-    urls = http.get_urls(url, service)
+    urls = http.get_urls(s.TEST_VTT_URL, service)
 
     expected: list = [
         os.path.join(tmp_path._str, "seg_00000.vtt"),
