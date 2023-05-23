@@ -46,7 +46,7 @@ def test_get_urls_netflix():
 
 
 def test_download_all_subtitles(tmp_path):
-    url = "https://vod-akc-ap-north-1.media.dssott.com/ps01/disney/cca28bc2-eb49-476a-af99-173d06cfafc8/r/bf6f3bfc-01e1-4270-b605-264de963aab0/3737-MAIN/06/subtitles_1/seg_00001.vtt"
+    url = "https://raw.githubusercontent.com/astromech-droid/subtitles/main/tests/data/http/vtt/seg_00000.vtt"
     urls = http.get_urls(url, s.SERVICE_DISNEYPLUS)
 
     dirname = tmp_path
