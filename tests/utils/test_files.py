@@ -24,3 +24,17 @@ def test_get_lines():
     excepted: list = ["Hello world!\n", "This is a test."]
 
     assert files.get_lines(path) == excepted
+
+
+def test_save_text_true(tmp_path):
+    text = "This is a test."
+    path = tmp_path / "save_text.txt"
+
+    assert files.save_text(text, path) is True
+
+
+def test_save_text_false(tmp_path):
+    text = ""
+    path = tmp_path / "save_text.txt"
+
+    assert files.save_text(text, path) is False
