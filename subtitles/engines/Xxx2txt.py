@@ -19,10 +19,10 @@ class Xxx2txt:
     def _parse_lines(self, lines: list) -> list:
         pass
 
-    def _parse_subtitles(self, from_path: str, to_path: str) -> bool:
-        lines: list = files.get_lines(from_path)
+    def _parse_subtitles(self, path_src: str, path_dst: str) -> bool:
+        lines: list = files.get_lines(path_src)
         lines = self._parse_lines(lines)
-        result: bool = files.save_lines(lines, to_path)
+        result: bool = files.save_lines(lines, path_dst)
         return result
 
     def _download_all_subtitles(self, url: str) -> list:
@@ -31,28 +31,28 @@ class Xxx2txt:
         return pathes
 
     def _parse_all_subtitles(self, pathes: list, title: str) -> list:
-        to_pathes = []
+        pathes_dst = []
 
-        for path in pathes:
+        for path_src in pathes:
             dirname: str = os.path.join(settings.TXT_DIR, title)
 
             if self.service == settings.SERVICE_DISNEYPLUS:
-                filename: str = re.match(r"^.*/(.*)\.\w+$", path)[1] + ".txt"
+                filename: str = re.match(r"^.*/(.*)\.\w+$", path_src)[1] + ".txt"
             elif self.service == settings.SERVICE_NETFLIX:
                 filename: str = settings.DEFAULT_TXT_FILENAME
 
-            to_path: str = os.path.join(dirname, filename)
+            path_dst: str = os.path.join(dirname, filename)
 
-            if self._parse_subtitles(from_path=path, to_path=to_path):
-                to_pathes.append(to_path)
+            if self._parse_subtitles(path_src, path_dst):
+                pathes_dst.append(path_dst)
 
             else:
                 break
 
-        return to_pathes
+        return pathes_dst
 
     def run(self, url: str) -> list:
         pathes = self._download_all_subtitles(url)
-        to_pathes = self._parse_all_subtitles(pathes, self.title)
+        pathes_dst = self._parse_all_subtitles(pathes, self.title)
 
-        return to_pathes
+        return pathes_dst
