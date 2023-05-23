@@ -1,6 +1,5 @@
-import conf.settings as s
-
-from utils import files, parsers
+from subtitles.conf import settings as s
+from subtitles.utils import files, parsers
 
 
 def test_remove_linenumbers():

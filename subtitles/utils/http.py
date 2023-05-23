@@ -3,10 +3,9 @@ import os
 import re
 import time
 
-import conf.settings as s
 import requests
-
-from utils import files
+from subtitles.conf import settings as s
+from subtitles.utils import files
 
 
 def _fetch_text(url: str) -> str:

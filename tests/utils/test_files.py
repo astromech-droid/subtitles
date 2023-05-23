@@ -1,6 +1,5 @@
-import conf.settings as settings
-
-from utils import files
+from subtitles.conf import settings as settings
+from subtitles.utils import files
 
 
 def test_find_path_found():

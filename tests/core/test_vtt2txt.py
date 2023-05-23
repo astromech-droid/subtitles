@@ -1,7 +1,6 @@
-import conf.settings as s
-from utils import files
-
-from core import vtt2txt
+from subtitles.conf import settings as s
+from subtitles.core import vtt2txt
+from subtitles.utils import files
 
 
 def test_parse_lines():

@@ -1,8 +1,7 @@
 import os
 
-import conf.settings as s
-
-from utils import files, http
+from subtitles.conf import settings as s
+from subtitles.utils import files, http
 
 
 def test_download_subtitles_save(tmp_path):
@@ -48,7 +47,10 @@ def test_get_urls_netflix():
 
 
 def test_download_all_subtitles(tmp_path):
-    url = "https://raw.githubusercontent.com/astromech-droid/subtitles/main/tests/data/utils/http/vtt/seg_00000.vtt"
+    url = (
+        "https://raw.githubusercontent.com/astromech-droid/subtitles/main/tests"
+        "/data/utils/http/vtt/seg_00000.vtt"
+    )
     service = s.SERVICE_DISNEYPLUS
     urls = http.get_urls(url, service)
 

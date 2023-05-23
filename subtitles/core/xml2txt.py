@@ -3,7 +3,7 @@ import re
 
 from bs4 import BeautifulSoup
 from bs4.element import NavigableString, Tag
-from utils import files, parsers
+from subtitles.utils import files, parsers
 
 
 def _to_int(starttime: str) -> int:

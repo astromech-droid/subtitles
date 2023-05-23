@@ -1,4 +1,4 @@
-from utils import files, parsers
+from subtitles.utils import files, parsers
 
 
 def parse_lines(lines: list) -> list:
