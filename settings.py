@@ -1,8 +1,10 @@
 import os
 
-VTT_DIR = "vtt"
-XML_DIR = "xml"
-TXT_DIR = "txt"
+OUTPUT_DIR = "output"
+VTT_DIR = os.path.join(OUTPUT_DIR, "vtt")
+XML_DIR = os.path.join(OUTPUT_DIR, "xml")
+TXT_DIR = os.path.join(OUTPUT_DIR, "txt")
+
 TEST_DIR = "tests"
 TEST_DATA_DIR = os.path.join(TEST_DIR, "data")
 
