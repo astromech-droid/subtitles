@@ -1,5 +1,8 @@
 import copy
+import math
 import re
+
+from bs4.element import NavigableString, Tag
 
 
 def remove_linenumbers(lines: list) -> list:
@@ -92,3 +95,34 @@ def merge_multilines(lines: list) -> list:
                 text_queue.clear()
 
     return new_lines
+
+
+def to_int(starttime: str) -> int:
+    st = re.match(r"(\d*)t", starttime)[1]
+    return int(st)
+
+
+def to_formatted_time(seconds: float) -> str:
+    h = math.floor(seconds / 3600)
+    m = math.floor(seconds / 60)
+    s = math.floor(seconds - (h * 3600 + m * 60))
+    ms = "{:.3f}".format(seconds - math.floor(seconds))[2:]
+    return f"{str(h).zfill(2)}:{str(m).zfill(2)}:{str(s).zfill(2)}.{ms}"
+
+
+def get_texts_recurse(line) -> list:
+    texts = []
+    for c in line.contents:
+        if type(c) is NavigableString:
+            if c.text != "":
+                texts.append(c.text)
+
+        elif type(c) is Tag:
+            if c.text != "":
+                text = " ".join(get_texts_recurse(c))
+                texts.append(text)
+
+        else:
+            print("## ERROR ##")
+
+    return texts
