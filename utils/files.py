@@ -28,3 +28,18 @@ def save_text(text: str, path: str) -> bool:
         with open(path, "w") as f:
             f.write(text)
             return True
+
+
+def save_lines(lines: list, path: str) -> bool:
+    dirname = os.path.dirname(path)
+
+    if not os.path.exists(dirname):
+        os.makedirs(dirname)
+
+    if len(lines) == 0:
+        return False
+
+    else:
+        with open(path, "w") as f:
+            f.writelines(lines)
+            return True

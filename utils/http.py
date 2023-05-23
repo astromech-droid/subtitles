@@ -1,3 +1,4 @@
+import glob
 import os
 import re
 import time
@@ -52,4 +53,4 @@ def download_all_subtitles(urls: list, dirname: str) -> list:
 
         time.sleep(1)
 
-    return os.listdir(dirname)
+    return glob.glob(f"{dirname}/*")

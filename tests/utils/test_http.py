@@ -1,3 +1,5 @@
+import os
+
 import settings as s
 
 from utils import files, http
@@ -49,7 +51,9 @@ def test_download_all_subtitles(tmp_path):
     url = "https://raw.githubusercontent.com/astromech-droid/subtitles/main/tests/data/utils/http/vtt/seg_00000.vtt"
     urls = http.get_urls(url, s.SERVICE_DISNEYPLUS)
 
-    dirname = tmp_path
-    expected: list = ["seg_00000.vtt", "seg_00001.vtt"]
+    expected: list = [
+        os.path.join(tmp_path._str, "seg_00000.vtt"),
+        os.path.join(tmp_path._str, "seg_00001.vtt"),
+    ]
 
-    assert http.download_all_subtitles(urls, dirname) == expected
+    assert http.download_all_subtitles(urls, tmp_path) == expected

@@ -6,7 +6,7 @@ import settings as s
 from bs4 import BeautifulSoup
 from bs4.element import NavigableString, Tag
 
-from .parse_vtt import merge_multilines
+from ..core.vtt import merge_multilines
 
 
 def to_int(starttime: str) -> int:

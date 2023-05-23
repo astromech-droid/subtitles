@@ -38,3 +38,17 @@ def test_save_text_false(tmp_path):
     path = tmp_path / "save_text.txt"
 
     assert files.save_text(text, path) is False
+
+
+def test_save_lines_true(tmp_path):
+    lines = ["This is a test.\n", "Hello world!"]
+    path = tmp_path / "save_lines.txt"
+
+    assert files.save_lines(lines, path) is True
+
+
+def test_save_lines_false(tmp_path):
+    lines = []
+    path = tmp_path / "save_lines.txt"
+
+    assert files.save_lines(lines, path) is False

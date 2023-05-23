@@ -1,8 +1,10 @@
+"""
 import os
 
 import settings as s
+"""
 
-from utils import parsers
+from utils import files, parsers
 
 
 def _parse(lines: list) -> list:
@@ -13,10 +15,18 @@ def _parse(lines: list) -> list:
     lines = parsers.extruct_starttime(lines)
     lines = parsers.put_starttime_on_alllines(lines)
     lines = parsers.merge_multilines(lines)
-
     return lines
 
 
+def parse_subtitles(from_path: str, to_path: str) -> bool:
+    lines: list = files.get_lines(from_path)
+    lines = _parse(lines)
+
+    result: bool = files.save_lines(lines, to_path)
+    return result
+
+
+"""
 def parse_and_save(dirname, service):
     if service == s.Service.DISNEYPLUS:
         vtt_dir = os.path.join(s.OUT_DIR, dirname)
@@ -58,3 +68,4 @@ def parse_and_save(dirname, service):
 
         with open(out_path, "w") as f_output:
             f_output.writelines(lines)
+"""
