@@ -1,12 +1,9 @@
 import math
-import os
 import re
 
-import settings as s
 from bs4 import BeautifulSoup
 from bs4.element import NavigableString, Tag
-
-from ..core.vtt import merge_multilines
+from utils import files, parsers
 
 
 def to_int(starttime: str) -> int:
@@ -40,7 +37,7 @@ def _get_texts_recurse(line) -> list:
     return texts
 
 
-def parse(lines: list) -> list:
+def parse_lines(lines: list) -> list:
     xml_doc = "".join(lines)
     soup = BeautifulSoup(xml_doc, "xml")
     new_lines = []
@@ -55,8 +52,19 @@ def parse(lines: list) -> list:
     return new_lines
 
 
+def parse_subtitles(from_path: str, to_path: str) -> bool:
+    lines: list = files.get_lines(from_path)
+    lines: list = parse_lines(lines)
+    lines: list = parsers.merge_multilines(lines)
+
+    result: bool = files.save_lines(lines, to_path)
+
+    return result
+
+
+"""
 def parse_and_save(dirname, service):
-    if service == s.Service.NETFLIX:
+    if service == s.SERVICE_NETFLIX:
         xml_dir = os.path.join(s.XML_DIR, dirname)
         txt_dir = os.path.join(s.TXT_DIR, dirname)
 
@@ -67,8 +75,9 @@ def parse_and_save(dirname, service):
             os.makedirs(txt_dir)
 
         with open(xml_path, "r") as f_input:
-            lines = parse(f_input.readlines())
-            lines = merge_multilines(lines)
+            lines = parse_lines(f_input.readlines())
+            lines = parsers.merge_multilines(lines)
 
         with open(out_path, "w") as f_output:
             f_output.writelines(lines)
+"""

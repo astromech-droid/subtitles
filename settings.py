@@ -10,3 +10,5 @@ SERVICE_DISNEYPLUS = "disneyplus"
 SERVICE_NETFLIX = "netflix"
 
 MAX_SEGMENTS = 75  # 3h = 360min, 5min/vtt, 360/5 = 75vtt
+
+DEFAULT_FILENAME = "subtitle.txt"
