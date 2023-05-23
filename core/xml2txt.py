@@ -60,24 +60,3 @@ def parse_subtitles(from_path: str, to_path: str) -> bool:
     result: bool = files.save_lines(lines, to_path)
 
     return result
-
-
-"""
-def parse_and_save(dirname, service):
-    if service == s.SERVICE_NETFLIX:
-        xml_dir = os.path.join(s.XML_DIR, dirname)
-        txt_dir = os.path.join(s.TXT_DIR, dirname)
-
-        xml_path = os.path.join(xml_dir, "subtitle.xml")
-        out_path = os.path.join(txt_dir, "subtitle.txt")
-
-        if not os.path.exists(txt_dir):
-            os.makedirs(txt_dir)
-
-        with open(xml_path, "r") as f_input:
-            lines = parse_lines(f_input.readlines())
-            lines = parsers.merge_multilines(lines)
-
-        with open(out_path, "w") as f_output:
-            f_output.writelines(lines)
-"""
