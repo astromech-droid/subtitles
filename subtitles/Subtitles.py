@@ -1,9 +1,9 @@
 import re
 
 from subtitles.conf import settings
-from subtitles.core.Vtt2txt import Vtt2txt
-from subtitles.core.Xml2txt import Xml2txt
-from subtitles.core.Xxx2txt import Xxx2txt
+from subtitles.engines.Vtt2txt import Vtt2txt
+from subtitles.engines.Xml2txt import Xml2txt
+from subtitles.engines.Xxx2txt import Xxx2txt
 
 
 class Subtitles:

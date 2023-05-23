@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from subtitles.conf import settings
-from subtitles.core.Xxx2txt import Xxx2txt
+from subtitles.engines.Xxx2txt import Xxx2txt
 from subtitles.utils import parsers
 
 
