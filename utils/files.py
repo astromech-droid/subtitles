@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 
@@ -15,6 +16,11 @@ def get_lines(path: str) -> list:
 
 
 def save_text(text: str, path: str) -> bool:
+    dirname = os.path.dirname(path)
+
+    if not os.path.exists(dirname):
+        os.makedirs(dirname)
+
     if text == "":
         return False
 
