@@ -20,7 +20,7 @@ class Downloader:
         with open(path, "w") as f:
             f.write(text)
 
-    def _get_urls(self, url: str) -> list[str]:
+    def get_urls(self, url: str) -> list[str]:
         urls = []
 
         if self.service == settings.SERVICE_DISNEYPLUS:

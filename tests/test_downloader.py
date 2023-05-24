@@ -24,7 +24,7 @@ def test_download(tmp_path):
 def test_get_urls():
     url: str = "https://this/is/a/test/seg_00000.vtt"
     service: str = settings.SERVICE_DISNEYPLUS
-    urls: list[str] = Downloader(service)._get_urls(url)
+    urls: list[str] = Downloader(service).get_urls(url)
 
     for _url in urls:
         if not re.match(r"^https://.*/seg_\d{5}\.vtt$", _url):
