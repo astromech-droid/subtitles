@@ -39,8 +39,8 @@ def _get_text(element) -> str:
     return " ".join(text)
 
 
-def parse(xml_doc: str) -> list[list[str]]:
-    lines: list[list[str]] = []
+def parse(xml_doc: str) -> list[tuple[str]]:
+    lines: list[tuple[str]] = []
 
     soup = BeautifulSoup(xml_doc, "xml")
     elements = list(soup.find_all("p"))  # NavigableString, Tag
@@ -48,7 +48,7 @@ def parse(xml_doc: str) -> list[list[str]]:
     for el in elements:
         starttime: str = _get_starttime(el)
         text: str = _get_text(el)
-        line: list[str] = [starttime, text]
+        line: tuple[str] = (starttime, text)
         lines.append(line)
 
     return lines
