@@ -61,11 +61,12 @@ def read(path: str) -> list[str]:
     return parse(xml_doc)
 
 
-def save(path: str, lines: list[str]) -> None:
+def save(path: str, lines: list[tuple[str]]) -> None:
     dirname: str = os.path.dirname(path)
 
     if not os.path.exists(dirname):
         os.makedirs(dirname)
 
     with open(path, "w") as f:
-        f.writelines(lines)
+        for starttime, text in lines:
+            f.write(f"{starttime}: {text}\n")
