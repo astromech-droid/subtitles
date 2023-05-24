@@ -1,0 +1,15 @@
+WEBVTT
+
+STYLE
+::cue() {
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+00:03:26.458 --> 00:03:29.083 line:95%,end
+-Stu! Take the wheel. I'm hoppin' onboard.
+-No.
+
+00:06:11.125 --> 00:06:12.750 line:95%,end
+(THEME MUSIC PLAYING)
+
