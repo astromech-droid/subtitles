@@ -56,9 +56,9 @@ def parse(xml_doc: str) -> list[list[str]]:
 
 def read(path: str) -> list[str]:
     with open(path, "r", encoding="utf-8-sig") as f:
-        lines: list[str] = f.read()
+        xml_doc: str = f.read()
 
-    return parse(lines)
+    return parse(xml_doc)
 
 
 def save(path: str, lines: list[str]) -> None:
