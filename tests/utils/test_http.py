@@ -62,6 +62,14 @@ def test_get_filename_netflix():
     assert http.get_filename(url, service) == filename
 
 
+def test_get_path():
+    url = "https://test.com/subtitles/seg_00000.vtt"
+    dirname = "test"
+    service = settings.SERVICE_DISNEYPLUS
+
+    assert http.get_path(url, dirname, service) == "test/seg_00000.vtt"
+
+
 def test_download_all_subtitles(tmp_path):
     service = settings.SERVICE_DISNEYPLUS
     urls = http.get_urls(settings.TEST_VTT_URL, service)

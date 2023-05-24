@@ -51,10 +51,16 @@ def get_filename(url: str, service: str) -> str:
     return filename
 
 
+def get_path(url: str, dirname: str, service: str) -> str:
+    filename: str = get_filename(url, service)
+    path: str = os.path.join(dirname, filename)
+
+    return path
+
+
 def download_all_subtitles(urls: list, dirname: str, service: str) -> list:
     for url in urls:
-        filename: str = get_filename(url, service)
-        path: str = os.path.join(dirname, filename)
+        path: str = get_path(url, dirname, service)
         result: bool = download_subtitles(url, path)
 
         if result is False:
