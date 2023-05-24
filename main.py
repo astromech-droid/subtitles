@@ -1,6 +1,25 @@
 import glob
 import os
 
+from subtitles import vtt2txt
+from subtitles.conf import settings
+
+title: str = "zootopia_plus_s1e1"
+dirname: str = os.path.join(settings.VTT_DIR, title)
+
+pathes: list[str] = glob.glob(f"{dirname}/*")
+path: str = pathes[0]
+lines: list[list[str]] = vtt2txt.read(path)
+
+for starttime, text in lines:
+    print(f"{starttime}: {text}")
+
+
+# Usage - xml2txt -
+"""
+import glob
+import os
+
 from subtitles import xml2txt
 from subtitles.conf import settings
 
@@ -13,6 +32,7 @@ lines: list[list[str]] = xml2txt.read(path)
 
 for starttime, text in lines:
     print(f"{starttime}: {text}")
+"""
 
 
 # Usage - download -
