@@ -71,16 +71,13 @@ class Downloader:
             elif self.service == settings.SERVICE_NETFLIX:
                 filename: str = settings.DEFAULT_XML_FILENAME
 
-            path: str = os.path.join(dirname, filename)
-
             try:
+                path: str = os.path.join(dirname, filename)
                 self.download(url, path)
-
             except NotFound:
                 break
 
             pathes.append(path)
-
-            time.sleep(0.5)
+            time.sleep(settings.DOWNLOAD_INTERVAL)
 
         return pathes

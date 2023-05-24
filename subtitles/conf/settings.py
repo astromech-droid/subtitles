@@ -19,3 +19,4 @@ SERVICE_NETFLIX = "netflix"
 
 # PARAMETERS
 MAX_SEGMENTS = 75  # 3h = 360min, 5min/vtt, 360/5 = 75vtt
+DOWNLOAD_INTERVAL = 0.5
