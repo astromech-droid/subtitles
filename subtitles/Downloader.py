@@ -5,6 +5,7 @@ import time
 import requests
 
 from subtitles.conf import settings
+from subtitles.Exceptions import NotFound
 
 
 class Downloader:
@@ -14,9 +15,18 @@ class Downloader:
 
     def _fetch(self, url: str) -> str:
         response = requests.get(url)
+
+        if response.status_code == 404:
+            raise NotFound
+
         return response.text
 
     def _save(self, text: str, path: str) -> None:
+        dirname: str = os.path.dirname(path)
+
+        if not os.path.exists(dirname):
+            os.makedirs(dirname)
+
         with open(path, "w") as f:
             f.write(text)
 
@@ -35,8 +45,12 @@ class Downloader:
         return urls
 
     def download(self, url: str, path: str) -> None:
-        text: str = self._fetch(url)
-        self._save(text, path)
+        try:
+            text: str = self._fetch(url)
+            self._save(text, path)
+
+        except NotFound:
+            raise NotFound
 
     def get_dirname(self, title: str) -> str:
         if self.service == settings.SERVICE_DISNEYPLUS:
@@ -58,7 +72,13 @@ class Downloader:
                 filename: str = settings.DEFAULT_XML_FILENAME
 
             path: str = os.path.join(dirname, filename)
-            self.download(url, path)
+
+            try:
+                self.download(url, path)
+
+            except NotFound:
+                break
+
             pathes.append(path)
 
             time.sleep(0.5)
