@@ -33,7 +33,7 @@ def test_get_urls():
 
 def test_get_dirname():
     service: str = settings.SERVICE_DISNEYPLUS
-    title: str = "test"
+    title: str = settings.TEST_TITLE
     expected: str = os.path.join(settings.VTT_DIR, title)
 
     assert Downloader(service).get_dirname(title) == expected
@@ -41,8 +41,8 @@ def test_get_dirname():
 
 def test_download_all(tmp_path):
     urls: list[str] = [
-        "https://raw.githubusercontent.com/astromech-droid/subtitles/main/tests/data/utils/http/vtt/disneyplus/seg_00000.vtt",
-        "https://raw.githubusercontent.com/astromech-droid/subtitles/main/tests/data/utils/http/vtt/disneyplus/seg_00001.vtt",
+        settings.TEST_URL_DISNEYPLUS_00,
+        settings.TEST_URL_DISNEYPLUS_01,
     ]
     service: str = settings.SERVICE_DISNEYPLUS
     dirname: str = tmp_path._str

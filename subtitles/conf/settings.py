@@ -20,3 +20,20 @@ SERVICE_NETFLIX = "netflix"
 # PARAMETERS
 MAX_SEGMENTS = 75  # 3h = 360min, 5min/vtt, 360/5 = 75vtt
 DOWNLOAD_INTERVAL = 0.5
+
+# TESTS
+TEST_TITLE = "test"
+TEST_URL_DISNEYPLUS_00 = str(
+    "https://raw.githubusercontent.com/astromech-droid/subtitles/main/tests/data/utils"
+    "/http/vtt/disneyplus/seg_00000.vtt"
+)
+
+TEST_URL_DISNEYPLUS_01 = str(
+    "https://raw.githubusercontent.com/astromech-droid/subtitles/main/tests/data/utils"
+    "/http/vtt/disneyplus/seg_00001.vtt"
+)
+
+TEST_URL_NETFLIX = str(
+    "https://raw.githubusercontent.com/astromech-droid/subtitles/main/tests/data/utils"
+    "/http/xml/netflix/subtitles.xml"
+)
