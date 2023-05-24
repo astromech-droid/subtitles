@@ -10,10 +10,7 @@ def remove_linenumbers(lines: list) -> list:
     new_lines = []
 
     for line in lines:
-        if re.match(r"^\d+\n$", line):
-            pass
-
-        else:
+        if not re.match(r"^\d+\n$", line):
             new_lines.append(line)
 
     return new_lines

@@ -29,9 +29,6 @@ def get_urls(url: str, service: str) -> list:
     elif service == settings.SERVICE_NETFLIX:
         urls.append(url)
 
-    else:
-        pass
-
     return urls
 
 
