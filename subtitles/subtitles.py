@@ -30,7 +30,6 @@ def run(url: str, title: str) -> list:
         raise Exception("UnknownURL: Engine Not Found")
 
     engine = Engine(title)
-    # pathes = engine(title).run(url)
 
     pathes_src = engine.download_all_subtitles(url)
     pathes_dst = engine.parse_all_subtitles(pathes_src)
