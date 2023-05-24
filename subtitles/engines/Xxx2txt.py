@@ -25,12 +25,12 @@ class Xxx2txt:
         result: bool = files.save_lines(lines, path_dst)
         return result
 
-    def download_all_subtitles(self, url: str) -> list:
+    def download_subtitles(self, url: str) -> list:
         urls: list = http.get_urls(url, self.service)
         pathes: list = http.download_all_subtitles(urls, self.dirname, self.service)
         return pathes
 
-    def parse_all_subtitles(self, pathes: list) -> list:
+    def parse_subtitles(self, pathes: list) -> list:
         pathes_dst = []
 
         for path_src in pathes:

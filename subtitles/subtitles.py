@@ -31,7 +31,7 @@ def run(url: str, title: str) -> list:
 
     engine = Engine(title)
 
-    pathes_src = engine.download_all_subtitles(url)
-    pathes_dst = engine.parse_all_subtitles(pathes_src)
+    pathes_src = engine.download_subtitles(url)
+    pathes_dst = engine.parse_subtitles(pathes_src)
 
     return pathes_dst
