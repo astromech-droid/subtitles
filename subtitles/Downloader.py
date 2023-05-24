@@ -11,7 +11,6 @@ from subtitles.Exceptions import NotFound
 class Downloader:
     def __init__(self, service: str):
         self.service = service
-        pass
 
     def _fetch(self, url: str) -> str:
         response = requests.get(url)

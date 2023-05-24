@@ -8,8 +8,10 @@ def parse(lines: list[str]) -> list[tuple[str]]:
     starttime_buffer: str = ""
 
     for line in lines:
-        if re.match(r"^\d{2}:\d{2}:\d{2}.\d{3} -->.*", line):
-            starttime: str = re.match(r"^(\d{2}:\d{2}:\d{2}.\d{3}) -->.*", line)[1]
+        match_st: re.Match = re.match(r"^(\d{2}:\d{2}:\d{2}.\d{3}) -->.*", line)
+
+        if match_st:
+            starttime: str = match_st[1]
 
             if starttime_buffer == "":
                 text_buffer.clear()
@@ -21,8 +23,9 @@ def parse(lines: list[str]) -> list[tuple[str]]:
             starttime_buffer = starttime
 
         else:
-            if re.match(r"(.+)\n", line):
-                text: str = re.match(r"(.+)\n", line)[1]
+            match_txt: re.Match = re.match(r"(.+)\n", line)
+            if match_txt:
+                text: str = match_txt[1]
                 text_buffer.append(text)
 
     _lines.append((starttime_buffer, " ".join(text_buffer)))

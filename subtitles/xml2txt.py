@@ -19,7 +19,7 @@ def _get_starttime(element) -> str:
 
 
 def _get_text(element) -> str:
-    def _recurse(element) -> list[str]:
+    def __recurse(element) -> list[str]:
         _text: list[str] = []
 
         for c in element.contents:
@@ -29,12 +29,12 @@ def _get_text(element) -> str:
 
             elif type(c) is Tag:
                 if c.text != "":
-                    _: str = " ".join(_recurse(c))
+                    _: str = " ".join(__recurse(c))
                     _text.append(_)
 
         return _text
 
-    text: list[str] = _recurse(element)
+    text: list[str] = __recurse(element)
 
     return " ".join(text)
 
