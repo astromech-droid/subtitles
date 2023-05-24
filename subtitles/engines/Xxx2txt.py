@@ -25,16 +25,16 @@ class Xxx2txt:
         result: bool = files.save_lines(lines, path_dst)
         return result
 
-    def _download_all_subtitles(self, url: str) -> list:
+    def download_all_subtitles(self, url: str) -> list:
         urls: list = http.get_urls(url, self.service)
         pathes: list = http.download_all_subtitles(urls, self.dirname, self.service)
         return pathes
 
-    def _parse_all_subtitles(self, pathes: list, title: str) -> list:
+    def parse_all_subtitles(self, pathes: list) -> list:
         pathes_dst = []
 
         for path_src in pathes:
-            dirname: str = os.path.join(settings.TXT_DIR, title)
+            dirname: str = os.path.join(settings.TXT_DIR, self.title)
 
             if self.service == settings.SERVICE_DISNEYPLUS:
                 filename: str = re.match(r"^.*/(.*)\.\w+$", path_src)[1] + ".txt"
@@ -48,11 +48,5 @@ class Xxx2txt:
 
             else:
                 break
-
-        return pathes_dst
-
-    def run(self, url: str) -> list:
-        pathes = self._download_all_subtitles(url)
-        pathes_dst = self._parse_all_subtitles(pathes, self.title)
 
         return pathes_dst

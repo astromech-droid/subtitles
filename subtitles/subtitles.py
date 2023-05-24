@@ -24,11 +24,15 @@ def _get_engine(url: str) -> Xxx2txt:
 
 
 def run(url: str, title: str) -> list:
-    engine = _get_engine(url)
+    Engine: Xxx2txt = _get_engine(url)
 
-    if engine is None:
+    if Engine is None:
         raise Exception("UnknownURL: Engine Not Found")
 
-    pathes = engine(title).run(url)
+    engine = Engine(title)
+    # pathes = engine(title).run(url)
 
-    return pathes
+    pathes_src = engine.download_all_subtitles(url)
+    pathes_dst = engine.parse_all_subtitles(pathes_src)
+
+    return pathes_dst
