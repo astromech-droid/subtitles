@@ -41,17 +41,19 @@ def download_subtitles(url: list, path: str) -> bool:
     return result
 
 
+def get_filename(url: str, service: str) -> str:
+    if service == settings.SERVICE_DISNEYPLUS:
+        filename: str = re.match(r"^https://.*/(.*)", url)[1]
+
+    elif service == settings.SERVICE_NETFLIX:
+        filename: str = settings.DEFAULT_XML_FILENAME
+
+    return filename
+
+
 def download_all_subtitles(urls: list, dirname: str, service: str) -> list:
     for url in urls:
-        if service == settings.SERVICE_DISNEYPLUS:
-            filename: str = re.match(r"^https://.*/(.*)", url)[1]
-
-        elif service == settings.SERVICE_NETFLIX:
-            filename: str = settings.DEFAULT_XML_FILENAME
-
-        else:
-            filename: str = "UNKOWN_SERVICE.txt"
-
+        filename: str = get_filename(url, service)
         path: str = os.path.join(dirname, filename)
         result: bool = download_subtitles(url, path)
 
