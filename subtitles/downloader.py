@@ -9,8 +9,15 @@ from subtitles.exceptions import NotFound
 
 
 class Downloader:
-    def __init__(self, service: str):
+    def __init__(self, service: str, title: str):
         self.service = service
+        self.title = title
+
+        if self.service == settings.SERVICE_DISNEYPLUS:
+            self.dirname: str = os.path.join(settings.VTT_DIR, title)
+
+        elif self.service == settings.SERVICE_NETFLIX:
+            self.dirname: str = os.path.join(settings.XML_DIR, title)
 
     def _fetch(self, url: str) -> str:
         response = requests.get(url)
@@ -50,15 +57,6 @@ class Downloader:
 
         except NotFound:
             raise NotFound
-
-    def get_dirname(self, title: str) -> str:
-        if self.service == settings.SERVICE_DISNEYPLUS:
-            dirname: str = os.path.join(settings.VTT_DIR, title)
-
-        elif self.service == settings.SERVICE_NETFLIX:
-            dirname: str = os.path.join(settings.XML_DIR, title)
-
-        return dirname
 
     def download_all(self, urls: list[str], dirname: str) -> list[str]:
         pathes: list[str] = []

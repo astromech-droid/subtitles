@@ -10,7 +10,8 @@ def test_download(tmp_path):
     path: str = tmp_path / "test.txt"
     url: str = "https://raw.githubusercontent.com/astromech-droid/subtitles/main/LICENSE"
     service: str = settings.SERVICE_DISNEYPLUS
-    Downloader(service).download(url, path)
+    title: str = settings.TEST_TITLE
+    Downloader(service, title).download(url, path)
 
     with open(path, "r") as f:
         downloaded: str = f.read()
@@ -24,19 +25,20 @@ def test_download(tmp_path):
 def test_get_urls():
     url: str = "https://this/is/a/test/seg_00000.vtt"
     service: str = settings.SERVICE_DISNEYPLUS
-    urls: list[str] = Downloader(service).get_urls(url)
+    title: str = settings.TEST_TITLE
+    urls: list[str] = Downloader(service, title).get_urls(url)
 
     for _url in urls:
         if not re.match(r"^https://.*/seg_\d{5}\.vtt$", _url):
             assert False
 
 
-def test_get_dirname():
+def test_dirname():
     service: str = settings.SERVICE_DISNEYPLUS
     title: str = settings.TEST_TITLE
     expected: str = os.path.join(settings.VTT_DIR, title)
 
-    assert Downloader(service).get_dirname(title) == expected
+    assert Downloader(service, title).dirname == expected
 
 
 def test_download_all(tmp_path):
@@ -45,8 +47,9 @@ def test_download_all(tmp_path):
         settings.TEST_URL_DISNEYPLUS_01,
     ]
     service: str = settings.SERVICE_DISNEYPLUS
+    title: str = settings.TEST_TITLE
     dirname: str = tmp_path._str
-    Downloader(service).download_all(urls, dirname)
+    Downloader(service, title).download_all(urls, dirname)
 
     if not filecmp.cmp(
         os.path.join(dirname, "seg_00000.vtt"),

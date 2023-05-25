@@ -9,10 +9,10 @@ class Subtitles:
         self.title = title
 
     def download(self, url: str):
-        downloader = Downloader(self.service)
+        downloader = Downloader(self.service, self.title)
         urls: list[str] = downloader.get_urls(url)
 
-        dirname: str = downloader.get_dirname(self.title)
+        dirname: str = downloader.dirname
         pathes: list[str] = downloader.download_all(urls, dirname)
 
         return pathes
