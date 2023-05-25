@@ -1,17 +1,18 @@
 import os
 
 from subtitles.conf import settings
-from subtitles.core import vtt2txt, xml2txt
+from subtitles.core.vtt2txt import Vtt2txt
+from subtitles.core.xml2txt import Xml2txt
 
 
 class Parser:
     def __init__(self, service: str, title: str):
         if service == settings.SERVICE_DISNEYPLUS:
-            self.core = vtt2txt
+            self.core = Vtt2txt()
             self.dirname_src: str = os.path.join(settings.VTT_DIR, title)
 
         elif service == settings.SERVICE_NETFLIX:
-            self.core = xml2txt
+            self.core = Xml2txt()
             self.dirname_src: str = os.path.join(settings.XML_DIR, title)
 
         self.dirname_dst: str = os.path.join(settings.TXT_DIR, title)
