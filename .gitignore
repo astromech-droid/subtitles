@@ -162,3 +162,4 @@ cython_debug/
 output/vtt
 output/xml
 output/txt
+main.py
