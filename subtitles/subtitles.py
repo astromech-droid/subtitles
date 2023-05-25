@@ -7,13 +7,12 @@ class Subtitles:
     def __init__(self, service: str, title: str):
         self.service = service
         self.title = title
+        self.downloader = Downloader(self.service, self.title)
 
     def download(self, url: str):
-        downloader = Downloader(self.service, self.title)
-        urls: list[str] = downloader.get_urls(url)
-
-        dirname: str = downloader.dirname
-        pathes: list[str] = downloader.download_all(urls, dirname)
+        urls: list[str] = self.downloader.get_urls(url)
+        dirname: str = self.downloader.dirname
+        pathes: list[str] = self.downloader.download_all(urls, dirname)
 
         return pathes
 
