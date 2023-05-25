@@ -51,32 +51,20 @@ def test_download_xml(clean_up):
 
 
 def test_read_vtt():
-    TEST_LINES: list[tuple[str]] = [
-        ("00:00:09.083", "(THEME MUSIC PLAYING)"),
-        ("00:00:31.750", "BONNIE: <i>We're real proud of you, Judy.</i>"),
-        ("00:00:33.333", "STU: Yeah, scared too. BONNIE: Yes."),
-    ]
-
     service: str = settings.SERVICE_DISNEYPLUS
     title: str = settings.TEST_TITLE
     subtitles = Subtitles(service, title)
 
     path: str = glob.glob(f"{settings.TEST_DATA_DIR}*/vtt2txt/read.vtt")[0]
 
-    assert subtitles.read(path) == TEST_LINES
+    assert subtitles.read(path) == settings.TEST_LINES_VTT
 
 
 def test_read_xml():
-    TEST_LINES: list[tuple[str]] = [
-        ("00:13:25.000", "-Leave town for adventure. -[both] What did you say?"),
-        ("00:10:21.454", "But we've been here for all time, since I was born!"),
-        ("00:01:45.063", "You can handle a few minutes up here."),
-    ]
-
     service: str = settings.SERVICE_NETFLIX
     title: str = settings.TEST_TITLE
     subtitles = Subtitles(service, title)
 
     path: str = glob.glob(f"{settings.TEST_DATA_DIR}/*/read.xml")[0]
 
-    assert subtitles.read(path) == TEST_LINES
+    assert subtitles.read(path) == settings.TEST_LINES_XML
