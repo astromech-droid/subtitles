@@ -1,37 +1,23 @@
-import re
-
-from subtitles.conf import settings
-from subtitles.engines.Vtt2txt import Vtt2txt
-from subtitles.engines.Xml2txt import Xml2txt
-from subtitles.engines.Xxx2txt import Xxx2txt
+from subtitles.downloader import Downloader
+from subtitles.parser import Parser
 
 
-def _get_engine(url: str) -> Xxx2txt:
-    if re.match(settings.TEST_XML_URL, url):
-        return Xml2txt
+class Subtitles:
+    def __init__(self, service: str, title: str):
+        self.service = service
+        self.title = title
+        self.downloader = Downloader(self.service, self.title)
+        self.parser = Parser(self.service, self.title)
 
-    elif re.match(r".*nflxvideo.net/.*", url):
-        return Xml2txt
+    def download(self, url: str):
+        urls: list[str] = self.downloader.get_urls(url)
+        dirname: str = self.downloader.dirname
+        pathes: list[str] = self.downloader.download_all(urls, dirname)
 
-    elif re.match(settings.TEST_VTT_URL, url):
-        return Vtt2txt
+        return pathes
 
-    elif re.match(r".*/disney/.*/seg_\d{5}\.vtt$", url):
-        return Vtt2txt
+    def read(self, path: str) -> list[tuple[str]]:
+        return self.parser.read(path)
 
-    else:
-        return None
-
-
-def run(url: str, title: str) -> list:
-    Engine: Xxx2txt = _get_engine(url)
-
-    if Engine is None:
-        raise Exception("UnknownURL: Engine Not Found")
-
-    engine = Engine(title)
-
-    pathes_src = engine.download_subtitles(url)
-    pathes_dst = engine.parse_subtitles(pathes_src)
-
-    return pathes_dst
+    def write(self, path: str, lines: list[tuple[str]]) -> None:
+        return self.parser.write(path, lines)
