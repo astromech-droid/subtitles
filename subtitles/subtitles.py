@@ -23,3 +23,10 @@ class Subtitles:
 
         elif self.service == settings.SERVICE_NETFLIX:
             return xml2txt.read(path)
+
+    def write(self, path: str, lines: list[tuple[str]]) -> None:
+        if self.service == settings.SERVICE_DISNEYPLUS:
+            return vtt2txt.write(path, lines)
+
+        elif self.service == settings.SERVICE_NETFLIX:
+            return xml2txt.write(path, lines)

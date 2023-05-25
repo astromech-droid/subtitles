@@ -12,7 +12,7 @@ def test_read():
 
 
 def test_write(tmp_path):
-    path: str = glob.glob(f"{settings.TEST_DATA_DIR}*/vtt2txt/save.txt")[0]
+    path: str = glob.glob(f"{settings.TEST_DATA_DIR}*/vtt2txt/write.txt")[0]
     _path: str = tmp_path / "test.txt"
 
     vtt2txt.write(_path, settings.TEST_LINES_VTT)

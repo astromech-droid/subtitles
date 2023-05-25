@@ -65,6 +65,32 @@ def test_read_xml():
     title: str = settings.TEST_TITLE
     subtitles = Subtitles(service, title)
 
-    path: str = glob.glob(f"{settings.TEST_DATA_DIR}/*/read.xml")[0]
+    path: str = glob.glob(f"{settings.TEST_DATA_DIR}/xml2txt/read.xml")[0]
 
     assert subtitles.read(path) == settings.TEST_LINES_XML
+
+
+def test_write_vtt(tmp_path):
+    service: str = settings.SERVICE_DISNEYPLUS
+    title: str = settings.TEST_TITLE
+    subtitles = Subtitles(service, title)
+
+    path: str = glob.glob(f"{settings.TEST_DATA_DIR}/vtt2txt/write.txt")[0]
+    _path: str = tmp_path / "test.txt"
+
+    subtitles.write(_path, settings.TEST_LINES_VTT)
+
+    assert filecmp.cmp(path, _path)
+
+
+def test_write_xml(tmp_path):
+    service: str = settings.SERVICE_NETFLIX
+    title: str = settings.TEST_TITLE
+    subtitles = Subtitles(service, title)
+
+    path: str = glob.glob(f"{settings.TEST_DATA_DIR}/xml2txt/write.txt")[0]
+    _path: str = tmp_path / "test.txt"
+
+    subtitles.write(_path, settings.TEST_LINES_XML)
+
+    assert filecmp.cmp(path, _path)
