@@ -40,7 +40,7 @@ def read(path: str) -> list[str]:
     return parse(lines)
 
 
-def save(path: str, lines: list[tuple[str]]) -> None:
+def write(path: str, lines: list[tuple[str]]) -> None:
     dirname: str = os.path.dirname(path)
 
     if not os.path.exists(dirname):

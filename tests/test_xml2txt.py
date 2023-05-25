@@ -11,10 +11,10 @@ def test_read():
     assert xml2txt.read(path) == settings.TEST_LINES_XML
 
 
-def test_save(tmp_path):
+def test_write(tmp_path):
     path: str = glob.glob(f"{settings.TEST_DATA_DIR}/*/save.txt")[0]
     _path: str = tmp_path / "test.txt"
 
-    xml2txt.save(_path, settings.TEST_LINES_XML)
+    xml2txt.write(_path, settings.TEST_LINES_XML)
 
     assert filecmp.cmp(path, _path)
