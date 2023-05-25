@@ -5,7 +5,7 @@ import time
 import requests
 
 from subtitles.conf import settings
-from subtitles.Exceptions import NotFound
+from subtitles.exceptions import NotFound
 
 
 class Downloader:

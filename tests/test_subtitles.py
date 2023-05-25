@@ -4,7 +4,7 @@ import os
 
 import pytest
 from subtitles.conf import settings
-from subtitles.Subtitles import Subtitles
+from subtitles.subtitles import Subtitles
 
 
 @pytest.fixture

@@ -1,6 +1,6 @@
 from subtitles import vtt2txt, xml2txt
 from subtitles.conf import settings
-from subtitles.Downloader import Downloader
+from subtitles.downloader import Downloader
 
 
 class Subtitles:

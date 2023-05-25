@@ -3,7 +3,7 @@ import os
 import re
 
 from subtitles.conf import settings
-from subtitles.Downloader import Downloader
+from subtitles.downloader import Downloader
 
 
 def test_download(tmp_path):
