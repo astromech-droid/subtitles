@@ -1,3 +1,5 @@
+from subtitles import vtt2txt, xml2txt
+from subtitles.conf import settings
 from subtitles.Downloader import Downloader
 
 
@@ -15,5 +17,9 @@ class Subtitles:
 
         return pathes
 
-    def read(self):
-        pass
+    def read(self, path: str) -> list[tuple[str]]:
+        if self.service == settings.SERVICE_DISNEYPLUS:
+            return vtt2txt.read(path)
+
+        elif self.service == settings.SERVICE_NETFLIX:
+            return xml2txt.read(path)
