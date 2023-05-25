@@ -1,8 +1,8 @@
 import filecmp
 import glob
 
-from subtitles import vtt2txt
 from subtitles.conf import settings
+from subtitles.core import vtt2txt
 
 
 def test_read():

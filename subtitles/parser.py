@@ -1,7 +1,7 @@
 import os
 
-from subtitles import vtt2txt, xml2txt
 from subtitles.conf import settings
+from subtitles.core import vtt2txt, xml2txt
 
 
 class Parser:

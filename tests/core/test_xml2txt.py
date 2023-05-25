@@ -1,8 +1,8 @@
 import filecmp
 import glob
 
-from subtitles import xml2txt
 from subtitles.conf import settings
+from subtitles.core import xml2txt
 
 
 def test_read():
