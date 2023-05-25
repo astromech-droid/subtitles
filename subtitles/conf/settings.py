@@ -24,18 +24,18 @@ DOWNLOAD_INTERVAL = 0.5
 # TESTS
 TEST_TITLE = "test"
 TEST_URL_DISNEYPLUS_00 = str(
-    "https://raw.githubusercontent.com/astromech-droid/subtitles/main/tests/data/utils"
-    "/http/vtt/disneyplus/seg_00000.vtt"
+    "https://raw.githubusercontent.com/astromech-droid/subtitles/main/tests/data"
+    "/downloader/seg_00000.vtt"
 )
 
 TEST_URL_DISNEYPLUS_01 = str(
-    "https://raw.githubusercontent.com/astromech-droid/subtitles/main/tests/data/utils"
-    "/http/vtt/disneyplus/seg_00001.vtt"
+    "https://raw.githubusercontent.com/astromech-droid/subtitles/main/tests/data"
+    "/downloader/seg_00001.vtt"
 )
 
 TEST_URL_NETFLIX = str(
-    "https://raw.githubusercontent.com/astromech-droid/subtitles/main/tests/data/utils"
-    "/http/xml/netflix/subtitles.xml"
+    "https://raw.githubusercontent.com/astromech-droid/subtitles/main/tests/data"
+    "/downloader/subtitles.xml"
 )
 
 TEST_LINES_XML: list[tuple[str]] = [
