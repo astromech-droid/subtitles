@@ -1,6 +1,7 @@
 import os
 import re
 
+from subtitles.core import filters
 from subtitles.core.xxx2txt import Xxx2txt
 
 
@@ -36,7 +37,7 @@ class Vtt2txt(Xxx2txt):
 
         _lines.append((starttime_buffer, " ".join(text_buffer)))
 
-        return _lines
+        return filters.merge(_lines)
 
     def read(self, path: str) -> list[str]:
         with open(path, "r", encoding="utf-8-sig") as f:

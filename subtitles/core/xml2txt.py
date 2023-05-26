@@ -4,6 +4,7 @@ import re
 
 from bs4 import BeautifulSoup
 from bs4.element import NavigableString, Tag
+from subtitles.core import filters
 from subtitles.core.xxx2txt import Xxx2txt
 
 
@@ -54,7 +55,7 @@ class Xml2txt(Xxx2txt):
             line: tuple[str] = (starttime, text)
             lines.append(line)
 
-        return lines
+        return filters.merge(lines)
 
     def read(self, path: str) -> list[str]:
         with open(path, "r", encoding="utf-8-sig") as f:
