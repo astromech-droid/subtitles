@@ -12,7 +12,7 @@ def merge(lines) -> list[tuple[str]]:
         if len(starttime_buffer) == 0:
             starttime_buffer.append(starttime)
 
-        if not re.match(r".*[a-z]$", text):
+        if not re.match(r".*[a-z]$|.*,$", text):
             text: str = " ".join(text_buffer)
             _lines.append((starttime_buffer.pop(), text))
             text_buffer.clear()

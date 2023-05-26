@@ -43,6 +43,7 @@ TEST_LINES_XML: list[tuple[str]] = [
     ("00:10:21.454", "But we've been here for all time, since I was born!"),
     ("00:01:45.063", "You can handle a few minutes up here."),
     ("00:05:32.000", "I don't want him dicking you around tonight."),
+    ("00:02:15.292", "I live at 308 Negra Arroyo Lane, Albuquerque, New Mexico, 87104."),
 ]
 
 TEST_LINES_VTT: list[tuple[str]] = [
@@ -53,4 +54,5 @@ TEST_LINES_VTT: list[tuple[str]] = [
         "00:34:36.120",
         "DARBUS: Timeliness means something in the world of theater, young lady.",
     ),
+    ("00:18:55.520", "After all, she loves pi."),
 ]
