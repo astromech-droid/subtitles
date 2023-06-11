@@ -17,7 +17,7 @@ class Xml2txt(Xxx2txt):
         seconds: float = int(re.match(r"^(\d+)t", starttime)[1]) / 10000000
 
         h = math.floor(seconds / 3600)
-        m = math.floor(seconds / 60)
+        m = math.floor(seconds / 60 - (h * 60))
         s = math.floor(seconds - (h * 3600 + m * 60))
         ms = "{:.3f}".format(seconds - math.floor(seconds))[2:]
 

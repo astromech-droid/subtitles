@@ -2,8 +2,8 @@ import filecmp
 import glob
 import os
 
-from cli.conf import settings
 from cli.parser import Parser
+from subtitles import settings
 
 SERVICE_VTT: str = settings.SERVICE_DISNEYPLUS
 TITLE_VTT: str = settings.TEST_TITLE

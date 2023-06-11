@@ -1,8 +1,8 @@
 import filecmp
 import glob
 
-from cli.conf import settings
 from cli.core.xml2txt import Xml2txt
+from subtitles import settings
 
 
 def test_read():

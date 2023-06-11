@@ -4,8 +4,8 @@ import time
 
 import requests
 
-from cli.conf import settings
 from cli.exceptions import NotFound
+from subtitles import settings
 
 
 class Downloader:

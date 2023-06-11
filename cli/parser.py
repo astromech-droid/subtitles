@@ -1,8 +1,8 @@
 import os
 
-from cli.conf import settings
 from cli.core.vtt2txt import Vtt2txt
 from cli.core.xml2txt import Xml2txt
+from subtitles import settings
 
 
 class Parser:

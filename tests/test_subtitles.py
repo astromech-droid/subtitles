@@ -3,8 +3,8 @@ import glob
 import os
 
 import pytest
-from cli.conf import settings
 from cli.subtitles import Subtitles
+from subtitles import settings
 
 
 @pytest.fixture
