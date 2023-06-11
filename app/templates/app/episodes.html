@@ -1,4 +1,6 @@
 {% extends "app/base.html" %}
 {% block content %}
-<a href="{% url 'episodes' %}">episodes</a>
+{% for episode in episodes %}
+<p>{{ episode }}</p>
+{% endfor %}
 {% endblock %}

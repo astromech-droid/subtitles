@@ -10,3 +10,11 @@ def index(request):
     context = {"episodes": episodes}
 
     return HttpResponse(template.render(context, request))
+
+
+def episodes(request):
+    template = loader.get_template("app/episodes.html")
+    episodes = Episode.objects.all()
+    context = {"episodes": episodes}
+
+    return HttpResponse(template.render(context, request))
