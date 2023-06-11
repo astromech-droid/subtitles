@@ -129,8 +129,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CLI_DIR = "cli"
 # OUTPUT_DIR = os.path.join(CLI_DIR, "output")
 OUTPUT_DIR = "output"
-# TEST_DIR = os.path.join(CLI_DIR, "tests")
-TEST_DIR = "tests"
+TEST_DIR = os.path.join(CLI_DIR, "tests")
+# TEST_DIR = "tests"
 
 VTT_DIR = os.path.join(OUTPUT_DIR, "vtt")
 XML_DIR = os.path.join(OUTPUT_DIR, "xml")
