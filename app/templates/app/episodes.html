@@ -1,6 +1,6 @@
 {% extends "app/base.html" %}
 {% block content %}
 {% for episode in episodes %}
-<p>{{ episode }}</p>
+<p><a href="{% url 'lines' episode.title %}">{{ episode.title }}</a></p>
 {% endfor %}
 {% endblock %}
