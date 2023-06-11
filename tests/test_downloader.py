@@ -2,8 +2,8 @@ import filecmp
 import os
 import re
 
-from subtitles.conf import settings
-from subtitles.downloader import Downloader
+from cli.conf import settings
+from cli.downloader import Downloader
 
 
 def test_download(tmp_path):
