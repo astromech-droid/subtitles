@@ -1,5 +1,12 @@
 from django.http import HttpResponse
+from django.template import loader
+
+from app.models import Episode
 
 
 def index(request):
-    return HttpResponse("Hello, world.")
+    template = loader.get_template("app/index.html")
+    episodes = Episode.objects.all()
+    context = {"episodes": episodes}
+
+    return HttpResponse(template.render(context, request))
