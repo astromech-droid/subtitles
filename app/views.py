@@ -39,7 +39,7 @@ def search(request):
 def search_api(request):
     regex_text: str = request.GET["regex_text"]
     # lines = Line.objects.filter(text=text)
-    lines = Line.objects.filter(text__iregex=regex_text)
+    lines = Line.objects.filter(text__regex=regex_text)
     context: dict = _serialize_lines(lines)
 
     return JsonResponse(context)
