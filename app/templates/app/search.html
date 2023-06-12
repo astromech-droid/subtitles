@@ -9,7 +9,7 @@
 </style>
 
 <div id="app">
-    <input type="text" v-model="input">
+    <input @keyup.enter="search" type="text" v-model="input">
     <button @click="search">search</button>
     <div v-for="line in lines">
         <div>
