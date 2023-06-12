@@ -11,10 +11,12 @@
 <div id="app">
     <input @keyup.enter="search" type="text" v-model="input">
     <button @click="search">search</button>
+    <a href="https://docs.python.org/3/library/re.html#regular-expression-syntax" target="_blank">HELP: regex syntax</a>
+    <hr>
     <div v-for="line in lines">
         <div>
             <span>[[ line.text ]]</span>
-            <span class="title"> @[[ line.episode_title ]]</span>
+            <span class="title">@[[ line.episode_title ]]</span>
         </div>
     </div>
 </div>
