@@ -1,0 +1,43 @@
+{% extends "app/base.html" %}
+{% block content %}
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<style>
+    .title {
+        color: gray;
+        font-size: 10px;
+    }
+</style>
+
+<div id="app">
+    <input type="text" v-model="input">
+    <button @click="search">search</button>
+    <div v-for="line in lines">
+        <div>
+            <span>[[ line.text ]]</span>
+            <span class="title"> @[[ line.episode_title ]]</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    const { createApp } = Vue
+
+    createApp({
+        delimiters: ["[[", "]]"],
+        data() {
+            return {
+                lines: [],
+                input: ""
+            }
+        },
+        methods: {
+            async search() {
+                url = `${location.protocol}//${location.host}{% url 'search_api' %}?regex_text=${this.input}`
+                response = await fetch(url)
+                json = await response.json()
+                this.lines = json["lines"]
+            }
+        }
+    }).mount('#app')
+</script>
+{% endblock %}
