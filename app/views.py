@@ -38,21 +38,32 @@ def search(request):
 
 def search_api(request):
     regex_text: str = request.GET["regex_text"]
-    # lines = Line.objects.filter(text=text)
     lines = Line.objects.filter(text__iregex=regex_text)
-    context: dict = _serialize_lines(lines)
+    context = {"lines": []}
+
+    for line in lines:
+        context["lines"].append(_serialize_line(line))
 
     return JsonResponse(context)
 
 
-def _serialize_lines(lines) -> dict:
-    context = {"lines": []}
-    for line in lines:
-        values = {
-            "text": line.serializable_value("text"),
-            "timestamp": line.serializable_value("timestamp"),
-            "episode_title": line.episode.title,
-        }
-        context["lines"].append(values)
+def _serialize_line(line) -> dict:
+    return {
+        "text": line.serializable_value("text"),
+        "timestamp": line.serializable_value("timestamp"),
+        "episode_title": line.episode.title,
+    }
 
-    return context
+
+def wordguesser(request):
+    template = loader.get_template("app/wordguesser.html")
+    context = {}
+
+    return HttpResponse(template.render(context, request))
+
+
+def wordguesser_api(request):
+    line = Line.objects.order_by("?")[0]
+    context: dict = {"line": _serialize_line(line)}
+
+    return JsonResponse(context)

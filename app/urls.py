@@ -7,5 +7,7 @@ urlpatterns = [
     path("episodes", views.episodes, name="episodes"),
     path("episodes/lines/<str:title>/", views.lines, name="lines"),
     path("search/", views.search, name="search"),
+    path("wordguesser/", views.wordguesser, name="wordguesser"),
     path("api/search/", views.search_api, name="search_api"),
+    path("api/wordguesser/", views.wordguesser_api, name="wordguesser_api"),
 ]

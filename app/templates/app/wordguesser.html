@@ -1,0 +1,59 @@
+{% extends "app/base.html" %}
+{% block content %}
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<div id="app">
+    <div v-if="show">[[ line.text ]]</div>
+    <div v-else>
+        <span v-for="(word, idx) in words">
+            <span v-if="idx==questionIdx">[[ "_".repeat(questionWord.length) ]]&nbsp;</span>
+            <span v-else>[[ word ]]&nbsp;</span>
+        </span><br>
+    </div>
+
+    <span v-if="words.length > 0">@[[ line.episode_title ]] ([[ line.timestamp ]])</span><br>
+
+    <button v-if="show" @click="getLine">getLine</button>
+    <button v-else @click="showAnswer">showAnswer</button>
+</div>
+
+<script>
+    const { createApp } = Vue
+
+    createApp({
+        delimiters: ["[[", "]]"],
+        data() {
+            return {
+                line: {},
+                words: [],
+                show: false,
+                questionIdx: null,
+                questionWord: "",
+            }
+        },
+        methods: {
+            async getLine() {
+                this.show = false
+                url = `${location.protocol}//${location.host}{% url 'wordguesser_api' %}`
+                response = await fetch(url)
+                json = await response.json()
+                this.line = json["line"]
+                this.words = this.line.text.split(" ")
+                this.questionIdx = this.generateRandom(0, this.words.length)
+                this.questionWord = this.words[this.questionIdx]
+            },
+            showAnswer() {
+                this.show = true
+            },
+            generateRandom(min, max) {
+                let diff = max - min
+                let rand = Math.random()
+                rand = Math.floor(rand * diff)
+                return rand + min
+            }
+        },
+        mounted() {
+            this.getLine()
+        }
+    }).mount('#app')
+</script>
+{% endblock %}
