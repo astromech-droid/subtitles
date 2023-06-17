@@ -26,6 +26,7 @@
             "django": true,
             "justMyCode": true
         },
+        /*
         {
             "name": "Python: main.py",
             "type": "python",
@@ -37,5 +38,6 @@
                 "DJANGO_SETTINGS_MODULE": "subtitles.settings"
             }
         }
+        */
     ]
 }
