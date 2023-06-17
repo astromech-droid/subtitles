@@ -10,7 +10,8 @@
             "request": "launch",
             "program": "${workspaceFolder}/manage.py",
             "args": [
-                "test"
+                "test",
+                "app/tests"
             ],
             "django": true,
             "justMyCode": true
