@@ -9,3 +9,14 @@ TEST_XML_VALUE = [
     ("00:02:18.250", "Albuquerque, New Mexico, 87104."),
     ("01:00:08.980", "Appreciate it."),
 ]
+
+TEST_VTT_PATH = "app/tests/data/test.vtt"
+TEST_VTT_VALUE = [
+    ("00:00:09.083", "(THEME MUSIC PLAYING)"),
+    ("00:00:31.750", "BONNIE: <i>We're real proud of you, Judy.</i>"),
+    ("00:00:33.333", "STU: Yeah, scared too. BONNIE: Yes."),
+    ("00:34:36.120", "Timeliness means something in"),
+    ("00:34:38.000", "the world of theater, young lady."),
+    ("00:18:55.520", "After all,"),
+    ("00:18:57.880", "she loves pi."),
+]
