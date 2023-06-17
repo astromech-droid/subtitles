@@ -1,5 +1,7 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template import loader
+
+from app.models import Line
 
 
 def index(request):
@@ -10,3 +12,11 @@ def index(request):
     }
 
     return HttpResponse(template.render(context, request))
+
+
+def search(request):
+    regex = request.GET["regex"]
+    lines = Line.objects.filter(text__iregex=regex).values()
+    json = {"lines": list(lines)}
+
+    return JsonResponse(json)
