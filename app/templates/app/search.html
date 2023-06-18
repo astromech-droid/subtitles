@@ -27,7 +27,7 @@
         delimiters: ["[[", "]]"],
         methods: {
             async search() {
-                const url = `http://localhost:8000/app/api/search?regex=${this.regex}`
+                const url = `${location.protocol}//${location.host}{% url 'search_api' %}?regex=${this.regex}`
                 const response = await fetch(url)
                 const json = await response.json()
                 this.lines = json["lines"]
