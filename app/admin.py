@@ -10,4 +10,5 @@ class EpisodeAdmin(admin.ModelAdmin):
 
 @admin.register(Line)
 class LineAdmin(admin.ModelAdmin):
+    list_display = ["episode", "line_number", "text"]
     pass
