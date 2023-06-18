@@ -10,10 +10,12 @@ def main(argv):
         extension = argv[2]
 
         if extension == "vtt":
-            cli.download_vtt(url=argv[3], dirname=argv[4])
+            path = cli.download_vtt(url=argv[3], dirname=argv[4])
 
         elif extension == "xml":
-            cli.download_xml(url=argv[3], path=argv[4])
+            path = cli.download_xml(url=argv[3], path=argv[4])
+
+        print(path)
 
 
 if __name__ == "__main__":
