@@ -27,14 +27,14 @@ def main(argv):
 
     elif cmd == "bulk_load":
         dirname = argv[2]
-        pathes = glob.glob(f"{dirname}/*")
+        pathes = sorted(glob.glob(f"{dirname}/*"))
 
         for path in pathes:
             cli.load_subs(path=path, title=argv[3])
 
     elif cmd == "bulk_reload":
         dirname = argv[2]
-        pathes = glob.glob(f"{dirname}/*")
+        pathes = sorted(glob.glob(f"{dirname}/*"))
 
         for i, path in enumerate(pathes):
             if i == 0:
