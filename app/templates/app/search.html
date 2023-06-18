@@ -1,6 +1,12 @@
 {% extends "app/base.html" %}
 {% block content %}
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<style>
+    .title {
+        color: gray;
+        font-size: 10px;
+    }
+</style>
 
 <div id="app">
     <input v-model="regex" @keyup.enter="search" />
@@ -8,7 +14,8 @@
     <a href="https://docs.python.org/3/library/re.html#regular-expression-syntax" target="_blank">syntax</a>
     <div>
         <div v-for="line in lines">
-            [[ line.text ]]
+            <span>[[ line.text ]]</span>
+            <span class="title">@[[ line.title ]]</span>
         </div>
     </div>
 </div>

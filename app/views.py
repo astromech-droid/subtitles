@@ -1,3 +1,4 @@
+from django.forms.models import model_to_dict
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 
@@ -32,8 +33,13 @@ def search(request):
 
 
 def search_api(request):
+    lines = []
     regex = request.GET["regex"]
-    lines = Line.objects.filter(text__iregex=regex).values()
-    json = {"lines": list(lines)}
+    _lines = Line.objects.filter(text__iregex=regex)
 
-    return JsonResponse(json)
+    for _line in _lines:
+        line = model_to_dict(_line)
+        line["title"] = _line.episode.title
+        lines.append(line)
+
+    return JsonResponse({"lines": lines})
