@@ -1,5 +1,9 @@
+import filecmp
+import os
+import shutil
+
 from app.tests import settings
-from app.utils import parse_vtt, parse_xml
+from app.utils import download_subs, parse_vtt, parse_xml
 from django.test import TestCase
 
 
@@ -15,3 +19,18 @@ class ParseVttTestCase(TestCase):
         path = settings.TEST_VTT_PATH
         lines: list[tuple[str]] = parse_vtt.parse(path)
         self.assertEqual(lines, settings.TEST_VTT_VALUE)
+
+
+class DownloadSubsTestCase(TestCase):
+    def setUp(self):
+        self.tmp_path = os.path.join(settings.TEST_TMP_DIR, "test.vtt")
+        os.makedirs(settings.TEST_TMP_DIR)
+
+    def test_download_subs(self):
+        url = settings.TEST_VTT_URL
+        path = download_subs.download(url, self.tmp_path)
+        self.assertEqual(filecmp.cmp(path, settings.TEST_VTT_PATH), True)
+
+    def tearDown(self):
+        tmp_dir = os.path.dirname(self.tmp_path)
+        shutil.rmtree(tmp_dir)

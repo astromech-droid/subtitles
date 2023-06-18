@@ -1,3 +1,5 @@
+TEST_TMP_DIR = "app/tests/tmp"
+
 TEST_XML_PATH = "app/tests/data/test.xml"
 TEST_XML_VALUE = [
     ("00:13:25.000", "-Leave town for adventure. -[both] What did you say?"),
@@ -20,3 +22,4 @@ TEST_VTT_VALUE = [
     ("00:18:55.520", "After all,"),
     ("00:18:57.880", "she loves pi."),
 ]
+TEST_VTT_URL = "https://raw.githubusercontent.com/astromech-droid/subtitles/main/app/tests/data/test.vtt"
