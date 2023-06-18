@@ -44,10 +44,15 @@ class DownloadSubsTestCase(TestCase):
 
 
 class FilterTestCase(TestCase):
-    def test_merge(self):
-        lines = settings.TEST_FILTER_VALUE["before"]
+    def test_merge_vtt(self):
+        lines = settings.TEST_VTT_VALUE
         _lines = filter.merge(lines)
-        self.assertEqual(_lines, settings.TEST_FILTER_VALUE["after"])
+        self.assertEqual(_lines, settings.TEST_VTT_FILTERED_VALUE)
+
+    def test_merge_xml(self):
+        lines = settings.TEST_XML_VALUE
+        _lines = filter.merge(lines)
+        self.assertEqual(_lines, settings.TEST_XML_FILTERED_VALUE)
 
 
 class ImporterTestCase(TestCase):
