@@ -32,6 +32,16 @@ def main(argv):
         for path in pathes:
             cli.load_subs(path=path, title=argv[3])
 
+    elif cmd == "bulk_reload":
+        dirname = argv[2]
+        pathes = glob.glob(f"{dirname}/*")
+
+        for i, path in enumerate(pathes):
+            if i == 0:
+                cli.reload_subs(path=path, title=argv[3])
+            else:
+                cli.load_subs(path=path, title=argv[3])
+
 
 if __name__ == "__main__":
     try:
@@ -43,3 +53,4 @@ if __name__ == "__main__":
         print("    download vtt <url> <dirname>")
         print("    load <path> <title>")
         print("    bulk_load <dirname> <title>")
+        print("    bulk_reload <dirname> <title>")

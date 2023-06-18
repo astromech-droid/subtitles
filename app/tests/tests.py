@@ -2,6 +2,7 @@ import filecmp
 import os
 import shutil
 
+from app.models import Episode, Line
 from app.tests import settings
 from app.utils import downloader, filter, loader, parser_vtt, parser_xml
 from django.test import TestCase
@@ -56,9 +57,7 @@ class FilterTestCase(TestCase):
 
 
 class LoaderTestCase(TestCase):
-    def load_subs(self, title, path, filtered_value):
-        lines = loader.load_subs(path, title)
-
+    def check(self, lines, title, filtered_value):
         for i, line in enumerate(lines):
             timestamp, text = filtered_value[i]
             self.assertEqual(line.timestamp, timestamp)
@@ -70,10 +69,26 @@ class LoaderTestCase(TestCase):
         title = settings.TEST_VTT_EPISODE_TITLE
         path = settings.TEST_VTT_PATH
         filtered_value = settings.TEST_VTT_FILTERED_VALUE
-        self.load_subs(title, path, filtered_value)
+        lines = loader.load_subs(path, title)
+        self.check(lines, title, filtered_value)
 
     def test_load_subs_xml(self):
         title = settings.TEST_XML_EPISODE_TITLE
         path = settings.TEST_XML_PATH
         filtered_value = settings.TEST_XML_FILTERED_VALUE
-        self.load_subs(title, path, filtered_value)
+        lines = loader.load_subs(path, title)
+        self.check(lines, title, filtered_value)
+
+    def test_reload_subs_vtt(self):
+        title = settings.TEST_VTT_EPISODE_TITLE
+        episode = Episode.objects.create(title=title)
+        for i, line in enumerate(settings.TEST_VTT_FILTERED_VALUE, 1):
+            timestamp, text = line
+            Line.objects.create(
+                episode=episode, timestamp=timestamp, text=text, line_number=i
+            )
+
+        path = settings.TEST_VTT_PATH
+        filtered_value = settings.TEST_VTT_FILTERED_VALUE
+        lines = loader.reload_subs(path, title)
+        self.check(lines, title, filtered_value)

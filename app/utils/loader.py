@@ -25,3 +25,8 @@ def load_subs(path: str, title: str):
         )
 
     return Line.objects.bulk_create(entries)
+
+
+def reload_subs(path: str, title: str):
+    Episode.objects.filter(title=title).delete()
+    return load_subs(path, title)

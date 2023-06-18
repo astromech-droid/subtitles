@@ -11,3 +11,7 @@ def download_xml(url, path):
 
 def load_subs(path, title):
     loader.load_subs(path, title)
+
+
+def reload_subs(path, title):
+    loader.reload_subs(path, title)
