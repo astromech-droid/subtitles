@@ -64,6 +64,7 @@ class ImporterTestCase(TestCase):
             self.assertEqual(line.timestamp, timestamp)
             self.assertEqual(line.text, text)
             self.assertEqual(line.episode.title, title)
+            self.assertEqual(line.line_number, i + 1)
 
     def test_import_subs_vtt(self):
         title = settings.TEST_VTT_EPISODE_TITLE

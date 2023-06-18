@@ -17,10 +17,10 @@ def import_subs(path: str, title: str):
 
     lines = filter.merge(lines)
 
-    for line in lines:
+    for i, line in enumerate(lines, 1):
         timestamp, text = line
         entries.append(
-            Line(episode=episode[0], timestamp=timestamp, text=text, line_number=0)
+            Line(episode=episode[0], timestamp=timestamp, text=text, line_number=i)
         )
 
     return Line.objects.bulk_create(entries)
