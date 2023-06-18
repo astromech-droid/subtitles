@@ -1,10 +1,11 @@
+import glob
 import sys
 
 import django
 
 django.setup()
 
-from app import cli
+from app import cli  # noqa: E402
 
 
 def main(argv):
@@ -24,6 +25,13 @@ def main(argv):
     elif cmd == "load":
         cli.load_subs(path=argv[2], title=argv[3])
 
+    elif cmd == "bulk_load":
+        dirname = argv[2]
+        pathes = glob.glob(f"{dirname}/*")
+
+        for path in pathes:
+            cli.load_subs(path=path, title=argv[3])
+
 
 if __name__ == "__main__":
     try:
@@ -34,3 +42,4 @@ if __name__ == "__main__":
         print("    download xml <url> <path>")
         print("    download vtt <url> <dirname>")
         print("    load <path> <title>")
+        print("    bulk_load <dirname> <title>")
