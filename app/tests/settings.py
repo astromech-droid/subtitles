@@ -35,3 +35,12 @@ TEST_FILTER_VALUE = {
         ("00:18:55.520", "After all, she loves pi."),
     ],
 }
+
+TEST_SEGMENT_URLS = [
+    "https://raw.githubusercontent.com/astromech-droid/subtitles/main/app/tests/data/segments/seg_00000.vtt",
+    "https://raw.githubusercontent.com/astromech-droid/subtitles/main/app/tests/data/segments/seg_00001.vtt",
+]
+TEST_SEGMENT_PATHES = [
+    "app/tests/data/segments/seg_00000.vtt",
+    "app/tests/data/segments/seg_00001.vtt",
+]

@@ -24,12 +24,19 @@ class ParseVttTestCase(TestCase):
 class DownloadSubsTestCase(TestCase):
     def setUp(self):
         self.tmp_path = os.path.join(settings.TEST_TMP_DIR, "test.vtt")
-        os.makedirs(settings.TEST_TMP_DIR)
+        if not os.path.exists(settings.TEST_TMP_DIR):
+            os.makedirs(settings.TEST_TMP_DIR)
 
     def test_download_subs(self):
         url = settings.TEST_VTT_URL
         path = downloader.download_subs(url, self.tmp_path)
         self.assertEqual(filecmp.cmp(path, settings.TEST_VTT_PATH), True)
+
+    def test_download_segments(self):
+        url = settings.TEST_SEGMENT_URLS[0]
+        pathes = downloader.download_segments(url, settings.TEST_TMP_DIR)
+        for i, path in enumerate(pathes):
+            self.assertEqual(filecmp.cmp(path, settings.TEST_SEGMENT_PATHES[i]), True)
 
     def tearDown(self):
         tmp_dir = os.path.dirname(self.tmp_path)
