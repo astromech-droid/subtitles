@@ -12,7 +12,7 @@ def import_subs(path: str, title: str):
     if extension == "vtt":
         lines = parser_vtt.parse_vtt(path)
 
-    elif extension == "vtt":
+    elif extension == "xml":
         lines = parser_xml.parse_xml(path)
 
     lines = filter.merge(lines)

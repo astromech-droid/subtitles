@@ -51,13 +51,23 @@ class FilterTestCase(TestCase):
 
 
 class ImporterTestCase(TestCase):
-    def test_import_subs_vtt(self):
-        path = settings.TEST_VTT_PATH
-        title = settings.TEST_EPISODE_TITLE
+    def import_subs(self, title, path, filtered_value):
         lines = importer.import_subs(path, title)
 
         for i, line in enumerate(lines):
-            timestamp, text = settings.TEST_VTT_FILTERD_VALUE[i]
+            timestamp, text = filtered_value[i]
             self.assertEqual(line.timestamp, timestamp)
             self.assertEqual(line.text, text)
             self.assertEqual(line.episode.title, title)
+
+    def test_import_subs_vtt(self):
+        title = settings.TEST_VTT_EPISODE_TITLE
+        path = settings.TEST_VTT_PATH
+        filtered_value = settings.TEST_VTT_FILTERED_VALUE
+        self.import_subs(title, path, filtered_value)
+
+    def test_import_subs_xml(self):
+        title = settings.TEST_XML_EPISODE_TITLE
+        path = settings.TEST_XML_PATH
+        filtered_value = settings.TEST_XML_FILTERED_VALUE
+        self.import_subs(title, path, filtered_value)
