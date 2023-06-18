@@ -1,0 +1,14 @@
+{% extends "app/base.html" %}
+{% block content %}
+<div>
+    <a href="{% url 'episodes' %}">episodes</a> -> {{ title }}
+    <hr>
+</div>
+
+{% for line in lines %}
+<div>
+    {{ line.timestamp | time:"H:i:s" }}:
+    {{ line.text }}
+</div>
+{% endfor %}
+{% endblock content %}

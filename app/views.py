@@ -18,6 +18,13 @@ def episodes(request):
     return HttpResponse(template.render(context, request))
 
 
+def lines(request, title):
+    template = loader.get_template("app/lines.html")
+    episode = Episode.objects.get(title=title)
+    context = {"title": title, "lines": episode.lines.all()}
+    return HttpResponse(template.render(context, request))
+
+
 def search(request):
     regex = request.GET["regex"]
     lines = Line.objects.filter(text__iregex=regex).values()

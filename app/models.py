@@ -9,7 +9,7 @@ class Episode(models.Model):
 
 
 class Line(models.Model):
-    episode = models.ForeignKey(Episode, on_delete=models.CASCADE)
+    episode = models.ForeignKey(Episode, on_delete=models.CASCADE, related_name="lines")
     line_number = models.IntegerField()
     timestamp = models.TimeField(null=True)
     text = models.CharField(max_length=250)
