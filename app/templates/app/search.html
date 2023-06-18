@@ -5,8 +5,7 @@
 <div id="app">
     <input v-model="regex" @keyup.enter="search" />
     <button @click="search">search</button>
-    <span><a href="https://docs.python.org/3/library/re.html#regular-expression-syntax"
-            target="_blank">syntax</a></span>
+    <a href="https://docs.python.org/3/library/re.html#regular-expression-syntax" target="_blank">syntax</a>
     <div>
         <div v-for="line in lines">
             [[ line.text ]]
