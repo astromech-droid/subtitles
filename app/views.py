@@ -26,6 +26,12 @@ def lines(request, title):
 
 
 def search(request):
+    template = loader.get_template("app/search.html")
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+
+def search_api(request):
     regex = request.GET["regex"]
     lines = Line.objects.filter(text__iregex=regex).values()
     json = {"lines": list(lines)}

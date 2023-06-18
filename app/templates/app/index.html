@@ -1,4 +1,9 @@
 {% extends "app/base.html" %}
 {% block content %}
-<a href="{% url 'episodes' %}">episodes</a>
+<div>
+    <a href="{% url 'episodes' %}">episodes</a>
+</div>
+<div>
+    <a href="{% url 'search' %}">search</a>
+</div>
 {% endblock content %}
