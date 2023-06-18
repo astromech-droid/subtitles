@@ -1,0 +1,94 @@
+{% extends "app/base.html" %}
+{% block content %}
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<style>
+    .answer {
+        color: red;
+    }
+
+    .correct {
+        color: green;
+    }
+
+    .incorrect {
+        color: red;
+    }
+
+    .title {
+        color: gray;
+        font-size: 10px;
+    }
+</style>
+
+<div id="app">
+    <div>
+        <span v-for="(_word, i) in text">
+            <span v-if="index==i">
+                <span v-if="showAnswer">
+                    <span v-if="correct" class="correct">[[ _word ]]&nbsp;</span>
+                    <span v-else class="incorrect">[[ _word ]]&nbsp;</span>
+                </span>
+                <span v-else>[[ "*".repeat(_word.length) ]]&nbsp;</span>
+            </span>
+            <span v-else="index==i">[[ _word ]]&nbsp;</span>
+        </span>
+    </div>
+    <div class="title">@[[ line.title ]]</div>
+    <input v-model="answer" @keyup.enter="judge" />
+    <button @click="judge">answer</button>
+    <button @click="fetchLine">next</button>
+    <div v-show="showAnswer">
+        <div v-if="correct" class="correct">CORRECT</div>
+        <div v-else class="incorrect">INCORRECT</div>
+    </div>
+</div>
+
+<script>
+    const { createApp, ref } = Vue
+
+    createApp({
+        setup() {
+            const line = ref({})
+            const correct = ref(false)
+            const showAnswer = ref(false)
+            return {
+                line, correct, showAnswer
+            }
+        },
+        delimiters: ["[[", "]]"],
+        methods: {
+            async fetchLine() {
+                const url = `${location.protocol}//${location.host}{% url 'wordguesser_api' %}`
+                const response = await fetch(url)
+                const json = await response.json()
+                this.line = json["line"]
+
+                // pick question word
+                this.text = this.line.text.split(" ")
+                this.index = this.getRandomInt(this.text.length)
+                this.word = this.text[this.index]
+
+                // hide answer
+                this.showAnswer = false
+
+                // clear answer
+                this.answer = ""
+            },
+            getRandomInt(max) {
+                return Math.floor(Math.random() * max);
+            },
+            judge() {
+                if (this.answer == this.word) {
+                    this.correct = true
+                } else {
+                    this.correct = false
+                }
+                this.showAnswer = true
+            }
+        },
+        mounted() {
+            this.fetchLine()
+        }
+    }).mount('#app')
+</script>
+{% endblock content %}

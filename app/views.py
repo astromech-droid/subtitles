@@ -43,3 +43,17 @@ def search_api(request):
         lines.append(line)
 
     return JsonResponse({"lines": lines})
+
+
+def wordguesser(request):
+    template = loader.get_template("app/wordguesser.html")
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+
+def wordguesser_api(request):
+    _line = Line.objects.order_by("?")[0]
+    line = model_to_dict(_line)
+    line["title"] = _line.episode.title
+
+    return JsonResponse({"line": line})
