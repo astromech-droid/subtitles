@@ -11,9 +11,16 @@
     "editor.codeActionsOnSave": {
         "source.organizeImports": true
     },
-    "python.testing.pytestArgs": [
-        "tests"
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./app/tests",
+        "-p",
+        "test*.py"
     ],
-    "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.unittestEnabled": true,
+    "python.testing.pytestEnabled": false,
+    "terminal.integrated.env.linux": {
+        "DJANGO_SETTINGS_MODULE": "subtitles.settings"
+    }
 }
