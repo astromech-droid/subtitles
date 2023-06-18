@@ -22,6 +22,13 @@ TEST_VTT_VALUE = [
     ("00:18:55.520", "After all,"),
     ("00:18:57.880", "she loves pi."),
 ]
+TEST_VTT_FILTERD_VALUE = [
+    ("00:00:09.083", "(THEME MUSIC PLAYING)"),
+    ("00:00:31.750", "BONNIE: <i>We're real proud of you, Judy.</i>"),
+    ("00:00:33.333", "STU: Yeah, scared too. BONNIE: Yes."),
+    ("00:34:36.120", "Timeliness means something in the world of theater, young lady."),
+    ("00:18:55.520", "After all, she loves pi."),
+]
 TEST_VTT_URL = "https://raw.githubusercontent.com/astromech-droid/subtitles/main/app/tests/data/test.vtt"
 
 TEST_FILTER_VALUE = {
@@ -44,3 +51,5 @@ TEST_SEGMENT_PATHES = [
     "app/tests/data/segments/seg_00000.vtt",
     "app/tests/data/segments/seg_00001.vtt",
 ]
+
+TEST_EPISODE_TITLE = "test_s1e1"

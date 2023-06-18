@@ -3,7 +3,7 @@ import os
 import shutil
 
 from app.tests import settings
-from app.utils import downloader, filter, parser_vtt, parser_xml
+from app.utils import downloader, filter, importer, parser_vtt, parser_xml
 from django.test import TestCase
 
 
@@ -48,3 +48,16 @@ class FilterTestCase(TestCase):
         lines = settings.TEST_FILTER_VALUE["before"]
         _lines = filter.merge(lines)
         self.assertEqual(_lines, settings.TEST_FILTER_VALUE["after"])
+
+
+class ImporterTestCase(TestCase):
+    def test_import_subs_vtt(self):
+        path = settings.TEST_VTT_PATH
+        title = settings.TEST_EPISODE_TITLE
+        lines = importer.import_subs(path, title)
+
+        for i, line in enumerate(lines):
+            timestamp, text = settings.TEST_VTT_FILTERD_VALUE[i]
+            self.assertEqual(line.timestamp, timestamp)
+            self.assertEqual(line.text, text)
+            self.assertEqual(line.episode.title, title)
