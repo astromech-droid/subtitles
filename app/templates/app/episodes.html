@@ -1,0 +1,8 @@
+{% extends "app/base.html" %}
+{% block content %}
+{% for episode in episodes %}
+<div>
+    {{ episode.title }}
+</div>
+{% endfor %}
+{% endblock content %}
