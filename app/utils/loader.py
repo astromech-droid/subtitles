@@ -4,7 +4,7 @@ from app.models import Episode, Line
 from app.utils import filter, parser_vtt, parser_xml
 
 
-def import_subs(path: str, title: str):
+def load_subs(path: str, title: str):
     entries = []
     episode = Episode.objects.get_or_create(title=title)
     extension = re.match(r".*\.(\w+)$", path)[1]  # Ex. vtt, xml

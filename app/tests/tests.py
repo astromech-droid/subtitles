@@ -3,7 +3,7 @@ import os
 import shutil
 
 from app.tests import settings
-from app.utils import downloader, filter, importer, parser_vtt, parser_xml
+from app.utils import downloader, filter, loader, parser_vtt, parser_xml
 from django.test import TestCase
 
 
@@ -55,9 +55,9 @@ class FilterTestCase(TestCase):
         self.assertEqual(_lines, settings.TEST_XML_FILTERED_VALUE)
 
 
-class ImporterTestCase(TestCase):
-    def import_subs(self, title, path, filtered_value):
-        lines = importer.import_subs(path, title)
+class LoaderTestCase(TestCase):
+    def load_subs(self, title, path, filtered_value):
+        lines = loader.load_subs(path, title)
 
         for i, line in enumerate(lines):
             timestamp, text = filtered_value[i]
@@ -66,14 +66,14 @@ class ImporterTestCase(TestCase):
             self.assertEqual(line.episode.title, title)
             self.assertEqual(line.line_number, i + 1)
 
-    def test_import_subs_vtt(self):
+    def test_load_subs_vtt(self):
         title = settings.TEST_VTT_EPISODE_TITLE
         path = settings.TEST_VTT_PATH
         filtered_value = settings.TEST_VTT_FILTERED_VALUE
-        self.import_subs(title, path, filtered_value)
+        self.load_subs(title, path, filtered_value)
 
-    def test_import_subs_xml(self):
+    def test_load_subs_xml(self):
         title = settings.TEST_XML_EPISODE_TITLE
         path = settings.TEST_XML_PATH
         filtered_value = settings.TEST_XML_FILTERED_VALUE
-        self.import_subs(title, path, filtered_value)
+        self.load_subs(title, path, filtered_value)

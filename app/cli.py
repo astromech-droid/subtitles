@@ -1,4 +1,4 @@
-from app.utils import downloader, importer
+from app.utils import downloader, loader
 
 
 def download_vtt(url, dirname):
@@ -9,5 +9,5 @@ def download_xml(url, path):
     return downloader.download_subs(url, path)
 
 
-def import_subs(path, title):
-    importer.import_subs(path, title)
+def load_subs(path, title):
+    loader.load_subs(path, title)

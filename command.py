@@ -21,8 +21,8 @@ def main(argv):
 
         print(path)
 
-    elif cmd == "import":
-        cli.import_subs(path=argv[2], title=argv[3])
+    elif cmd == "load":
+        cli.load_subs(path=argv[2], title=argv[3])
 
 
 if __name__ == "__main__":
@@ -33,4 +33,4 @@ if __name__ == "__main__":
         print("[usage]")
         print("    download xml <url> <path>")
         print("    download vtt <url> <dirname>")
-        print("    import <path> <title>")
+        print("    load <path> <title>")
