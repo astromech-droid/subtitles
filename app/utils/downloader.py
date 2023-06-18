@@ -7,6 +7,11 @@ from app.utils import settings
 
 
 def download_subs(url: str, path: str) -> str:
+    dirname = os.path.dirname(path)
+
+    if not os.path.exists(dirname):
+        os.makedirs(dirname)
+
     response = requests.get(url)
 
     if response.status_code == 200:
