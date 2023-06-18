@@ -16,8 +16,9 @@ def import_subs(path: str, title: str):
         lines = parser_xml.parse_xml(path)
 
     lines = filter.merge(lines)
+    line_count = Line.objects.filter(episode__title=title).count()
 
-    for i, line in enumerate(lines, 1):
+    for i, line in enumerate(lines, line_count + 1):
         timestamp, text = line
         entries.append(
             Line(episode=episode[0], timestamp=timestamp, text=text, line_number=i)

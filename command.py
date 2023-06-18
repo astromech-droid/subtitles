@@ -1,5 +1,9 @@
 import sys
 
+import django
+
+django.setup()
+
 from app import cli
 
 
@@ -17,6 +21,9 @@ def main(argv):
 
         print(path)
 
+    elif cmd == "import":
+        cli.import_subs(path=argv[2], title=argv[3])
+
 
 if __name__ == "__main__":
     try:
@@ -26,3 +33,4 @@ if __name__ == "__main__":
         print("[usage]")
         print("    download xml <url> <path>")
         print("    download vtt <url> <dirname>")
+        print("    import <path> <title>")
