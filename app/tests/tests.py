@@ -3,7 +3,7 @@ import os
 import shutil
 
 from app.tests import settings
-from app.utils import download_subs, parse_vtt, parse_xml
+from app.utils import download_subs, filter, parse_vtt, parse_xml
 from django.test import TestCase
 
 
@@ -34,3 +34,10 @@ class DownloadSubsTestCase(TestCase):
     def tearDown(self):
         tmp_dir = os.path.dirname(self.tmp_path)
         shutil.rmtree(tmp_dir)
+
+
+class FilterTestCase(TestCase):
+    def test_merge(self):
+        lines = settings.TEST_FILTER_VALUE["before"]
+        _lines = filter.merge(lines)
+        self.assertEqual(_lines, settings.TEST_FILTER_VALUE["after"])

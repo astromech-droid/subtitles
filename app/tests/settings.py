@@ -23,3 +23,15 @@ TEST_VTT_VALUE = [
     ("00:18:57.880", "she loves pi."),
 ]
 TEST_VTT_URL = "https://raw.githubusercontent.com/astromech-droid/subtitles/main/app/tests/data/test.vtt"
+
+TEST_FILTER_VALUE = {
+    "before": [
+        ("00:00:33.333", "STU: Yeah, scared too. BONNIE: Yes."),
+        ("00:18:55.520", "After all,"),
+        ("00:18:57.880", "she loves pi."),
+    ],
+    "after": [
+        ("00:00:33.333", "STU: Yeah, scared too. BONNIE: Yes."),
+        ("00:18:55.520", "After all, she loves pi."),
+    ],
+}
