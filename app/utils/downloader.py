@@ -1,7 +1,7 @@
 import requests
 
 
-def download(url: str, path: str):
+def download_subs(url: str, path: str):
     response = requests.get(url)
 
     if response.status_code == 200:

@@ -1,7 +1,7 @@
 import re
 
 
-def parse(path: str) -> list[tuple[str]]:
+def parse_vtt(path: str) -> list[tuple[str]]:
     with open(path, "r", encoding="utf-8-sig") as f:
         lines: list[str] = f.readlines()
 

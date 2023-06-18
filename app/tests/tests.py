@@ -3,21 +3,21 @@ import os
 import shutil
 
 from app.tests import settings
-from app.utils import download_subs, filter, parse_vtt, parse_xml
+from app.utils import downloader, filter, parser_vtt, parser_xml
 from django.test import TestCase
 
 
 class ParseXmlTestCase(TestCase):
     def test_parse_xml(self):
         path = settings.TEST_XML_PATH
-        lines: list[tuple[str]] = parse_xml.parse(path)
+        lines: list[tuple[str]] = parser_xml.parse_xml(path)
         self.assertEqual(lines, settings.TEST_XML_VALUE)
 
 
 class ParseVttTestCase(TestCase):
     def test_parse_vtt(self):
         path = settings.TEST_VTT_PATH
-        lines: list[tuple[str]] = parse_vtt.parse(path)
+        lines: list[tuple[str]] = parser_vtt.parse_vtt(path)
         self.assertEqual(lines, settings.TEST_VTT_VALUE)
 
 
@@ -28,7 +28,7 @@ class DownloadSubsTestCase(TestCase):
 
     def test_download_subs(self):
         url = settings.TEST_VTT_URL
-        path = download_subs.download(url, self.tmp_path)
+        path = downloader.download_subs(url, self.tmp_path)
         self.assertEqual(filecmp.cmp(path, settings.TEST_VTT_PATH), True)
 
     def tearDown(self):

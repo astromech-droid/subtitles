@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from bs4.element import NavigableString, Tag
 
 
-def parse(path: str) -> list[tuple[str]]:
+def parse_xml(path: str) -> list[tuple[str]]:
     with open(path, "r", encoding="utf-8-sig") as f:
         xml_doc: str = f.read()
 
