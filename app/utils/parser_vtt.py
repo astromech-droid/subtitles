@@ -3,33 +3,25 @@ import re
 
 def parse_vtt(path: str) -> list[tuple[str]]:
     with open(path, "r", encoding="utf-8-sig") as f:
-        lines: list[str] = f.readlines()
+        _lines: list[str] = f.readlines()
 
-    _lines: list[tuple[str]] = []
-    text_buffer: list[str] = []
-    starttime_buffer: str = ""
+    lines: list[tuple[str]] = []
+    starttime: str = ""
+    text: str = ""
 
-    for line in lines:
-        match_st: re.Match = re.match(r"^(\d{2}:\d{2}:\d{2}.\d{3}) -->.*", line)
-
-        if match_st:
-            starttime: str = match_st[1]
-
-            if starttime_buffer == "":
-                text_buffer.clear()
-
-            else:
-                _lines.append((starttime_buffer, " ".join(text_buffer)))
-                text_buffer.clear()
-
-            starttime_buffer = starttime
-
+    for line in _lines:
+        if re.match(r"^\n$", line):
+            starttime = ""
+            text = ""
         else:
-            match_txt: re.Match = re.match(r"(.+)\n", line)
-            if match_txt:
-                text: str = match_txt[1]
-                text_buffer.append(text)
+            match: re.Match = re.match(r"^(\d{2}:\d{2}:\d{2}.\d{3}) -->.*", line)
 
-    _lines.append((starttime_buffer, " ".join(text_buffer)))
+            if match:
+                starttime: str = match[1]
+            else:
+                text: str = re.match(r"(.*)\n", line)[1]
+                if not starttime == "":
+                    lines.append((starttime, text))
+                    text = ""
 
-    return _lines
+    return lines

@@ -11,7 +11,9 @@
             "program": "${workspaceFolder}/manage.py",
             "args": [
                 "test",
-                "app/tests"
+                // "app.tests.tests.FilterTestCase",
+                // "app.tests.tests.ParseVttTestCase",
+                "app/tests",
             ],
             "django": true,
             "justMyCode": true
