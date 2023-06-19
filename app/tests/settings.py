@@ -2,8 +2,10 @@ TEST_TMP_DIR = "app/tests/tmp"
 
 TEST_XML_PATH = "app/tests/data/test.xml"
 TEST_XML_VALUE = [
-    ("00:13:25.000", "-Leave town for adventure. -[both] What did you say?"),
-    ("00:10:21.454", "But we've been here for all time, since I was born!"),
+    ("00:13:25.000", "-Leave town for adventure."),
+    ("00:13:25.000", "-[both] What did you say?"),
+    ("00:10:21.454", "But we've been here for all time,"),
+    ("00:10:21.454", "since I was born!"),
     ("00:01:45.063", "You can handle a few minutes up here."),
     ("00:05:32.000", "I don't want him"),
     ("00:05:32.000", "dicking you around tonight."),
@@ -12,7 +14,8 @@ TEST_XML_VALUE = [
     ("01:00:08.980", "Appreciate it."),
 ]
 TEST_XML_FILTERED_VALUE = [
-    ("00:13:25.000", "-Leave town for adventure. -[both] What did you say?"),
+    ("00:13:25.000", "-Leave town for adventure."),
+    ("00:13:25.000", "-[both] What did you say?"),
     ("00:10:21.454", "But we've been here for all time, since I was born!"),
     ("00:01:45.063", "You can handle a few minutes up here."),
     ("00:05:32.000", "I don't want him dicking you around tonight."),

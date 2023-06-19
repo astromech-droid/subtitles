@@ -16,9 +16,10 @@ def parse_xml(path: str) -> list[tuple[str]]:
 
     for el in elements:
         starttime: str = _get_starttime(el)
-        text: str = _get_text(el)
-        line: tuple[str] = (starttime, text)
-        lines.append(line)
+        texts: list[str] = _get_texts(el)
+        for text in texts:
+            line: tuple[str] = (starttime, text)
+            lines.append(line)
 
     return lines
 
@@ -35,7 +36,7 @@ def _get_starttime(element) -> str:
     return f"{str(h).zfill(2)}:{str(m).zfill(2)}:{str(s).zfill(2)}.{ms}"
 
 
-def _get_text(element) -> str:
+def _get_texts(element) -> list[str]:
     def __recurse(element) -> list[str]:
         _text: list[str] = []
 
@@ -51,6 +52,6 @@ def _get_text(element) -> str:
 
         return _text
 
-    text: list[str] = __recurse(element)
+    texts: list[str] = __recurse(element)
 
-    return " ".join(text)
+    return texts
