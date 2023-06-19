@@ -43,11 +43,11 @@ TEST_VTT_FILTERED_VALUE = [
     ("00:34:36.120", "Timeliness means something in the world of theater, young lady."),
     ("00:18:55.520", "After all, she loves pi."),
 ]
-TEST_VTT_URL = "https://raw.githubusercontent.com/astromech-droid/subtitles/main/app/tests/data/test.vtt"
+TEST_VTT_URL = "https://raw.githubusercontent.com/astromech-droid/subtitles/main/app/tests/data/test.vtt"  # noqa: E501
 
 TEST_SEGMENT_URLS = [
-    "https://raw.githubusercontent.com/astromech-droid/subtitles/main/app/tests/data/segments/seg_00000.vtt",
-    "https://raw.githubusercontent.com/astromech-droid/subtitles/main/app/tests/data/segments/seg_00001.vtt",
+    "https://raw.githubusercontent.com/astromech-droid/subtitles/main/app/tests/data/segments/seg_00000.vtt",  # noqa: E501
+    "https://raw.githubusercontent.com/astromech-droid/subtitles/main/app/tests/data/segments/seg_00001.vtt",  # noqa: E501
 ]
 TEST_SEGMENT_PATHES = [
     "app/tests/data/segments/seg_00000.vtt",
