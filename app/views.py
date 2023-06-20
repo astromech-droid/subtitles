@@ -26,6 +26,15 @@ def lines(request, title):
     return HttpResponse(template.render(context, request))
 
 
+def line_api(request, title, line_number):
+    episode = Episode.objects.get(title=title)
+    _line = Line.objects.filter(episode=episode).get(line_number=line_number)
+    line = model_to_dict(_line)
+    line["title"] = episode.title
+
+    return JsonResponse({"line": line})
+
+
 def search(request):
     template = loader.get_template("app/search.html")
     context = {}
