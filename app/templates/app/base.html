@@ -5,20 +5,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Subtitles</title>
     <style>
+        body {
+            background-color: #0E1117;
+            color: #C1CAD2;
+            margin: 0px;
+            /* margin: 8px; DEFAULT */
+        }
+
         a {
-            color: #0C4B33;
+            color: #93D7B7;
             text-decoration: none;
+        }
+
+        .header {
+            color: white;
+            background-color: #0C4B33;
+            margin: 0px;
+            padding: 5px;
+            font-weight: bold;
+            font-size: 25px;
+        }
+
+        .header>a {
+            color: white;
+        }
+
+        .content {
+            margin: 8px;
         }
     </style>
 </head>
 
 <body>
-    <h3><a href="{% url 'index' %}">Subtitles</a></h3>
-    <hr>
-    {% block content %}
-    {% endblock content %}
+    <div class="header">
+        <a href="{% url 'index' %}">Subtitles</a>
+    </div>
+    <div class="content">
+        {% block content %}
+        {% endblock content %}
+    </div>
 </body>
 
 </html>
