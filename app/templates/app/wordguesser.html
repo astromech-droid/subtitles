@@ -22,6 +22,9 @@
 
 <div id="app">
     <div>
+        <div v-for="preLine in preLines">
+            [[ preLine.text ]]
+        </div>
         <span v-for="(_word, i) in text">
             <span v-if="index==i">
                 <span v-if="showAnswer">
@@ -32,11 +35,15 @@
             </span>
             <span v-else="index==i">[[ _word ]]&nbsp;</span>
         </span>
+        <div v-for="postLine in postLines">
+            [[ postLine.text ]]
+        </div>
     </div>
     <div class="title">@[[ line.title ]]</div>
     <input v-model="answer" @keyup.enter="judge" />
     <button @click="judge">answer</button>
     <button @click="fetchLine">next</button>
+    <button @click="addLines">hint</button>
     <div v-show="showAnswer">
         <div v-if="correct" class="correct">CORRECT</div>
         <div v-else class="incorrect">INCORRECT</div>
@@ -49,10 +56,12 @@
     createApp({
         setup() {
             const line = ref({})
+            const preLines = ref([])
+            const postLines = ref([])
             const correct = ref(false)
             const showAnswer = ref(false)
             return {
-                line, correct, showAnswer
+                line, preLines, postLines, correct, showAnswer
             }
         },
         delimiters: ["[[", "]]"],
@@ -73,6 +82,10 @@
 
                 // clear answer
                 this.answer = ""
+
+                // clear post/pre lines 
+                this.preLines = []
+                this.postLines = []
             },
             getRandomInt(max) {
                 return Math.floor(Math.random() * max);
@@ -84,6 +97,20 @@
                     this.correct = false
                 }
                 this.showAnswer = true
+            },
+            async addLines() {
+                let offset = this.preLines.length + 1
+                const url = `${location.protocol}//${location.host}/app/api/episodes/${this.line.title}/${this.line.line_number - offset}`
+                const response = await fetch(url)
+                const json = await response.json()
+
+                const _url = `${location.protocol}//${location.host}/app/api/episodes/${this.line.title}/${this.line.line_number + offset}`
+                const _response = await fetch(_url)
+                const _json = await _response.json()
+
+                // Update array at the same time.
+                this.preLines.unshift(json["line"])
+                this.postLines.push(_json["line"])
             }
         },
         mounted() {
