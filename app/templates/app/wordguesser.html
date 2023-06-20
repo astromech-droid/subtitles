@@ -41,9 +41,13 @@
     </div>
     <div class="title">@[[ line.title ]]</div>
     <input v-model="answer" @keyup.enter="judge" />
-    <button @click="judge">answer</button>
-    <button @click="fetchLine">next</button>
-    <button @click="addLines">hint</button>
+    <span v-if="showAnswer">
+        <button @click="fetchLine">next</button>
+    </span>
+    <span v-else>
+        <button @click="addLines">hint</button>
+        <button @click="judge">answer</button>
+    </span>
     <div v-show="showAnswer">
         <div v-if="correct" class="correct">CORRECT</div>
         <div v-else class="incorrect">INCORRECT</div>
