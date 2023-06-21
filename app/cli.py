@@ -1,6 +1,6 @@
 import re
 
-from app.utils import downloader, loader, parser_vtt, parser_xml, sender
+from app.utils import downloader, filter, loader, parser_vtt, parser_xml, sender
 
 
 def download_vtt(url, dirname):
@@ -27,6 +27,8 @@ def read_lines(path):
 
     elif extension == "xml":
         lines = parser_xml.parse_xml(path)
+
+    lines = filter.merge(lines)
 
     return lines
 
