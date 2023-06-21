@@ -1,4 +1,6 @@
-from app.utils import downloader, loader
+import re
+
+from app.utils import downloader, loader, parser_vtt, parser_xml, sender
 
 
 def download_vtt(url, dirname):
@@ -15,3 +17,19 @@ def load_subs(path, title):
 
 def reload_subs(path, title):
     loader.reload_subs(path, title)
+
+
+def read_lines(path):
+    extension = re.match(r".*\.(\w+)$", path)[1]  # Ex. vtt, xml
+
+    if extension == "vtt":
+        lines = parser_vtt.parse_vtt(path)
+
+    elif extension == "xml":
+        lines = parser_xml.parse_xml(path)
+
+    return lines
+
+
+def send_lines(url, lines):
+    sender.send_lines(url, lines)
