@@ -18,6 +18,11 @@
         color: gray;
         font-size: 10px;
     }
+
+    #line {
+        display: flex;
+        flex-wrap: wrap;
+    }
 </style>
 
 <div id="app">
@@ -25,16 +30,18 @@
         <div v-for="preLine in preLines">
             [[ preLine.text ]]
         </div>
-        <span v-for="(_word, i) in text">
-            <span v-if="index==i">
-                <span v-if="showAnswer">
-                    <span v-if="correct" class="correct">[[ _word ]]&nbsp;</span>
-                    <span v-else class="incorrect">[[ _word ]]&nbsp;</span>
+        <div id="line">
+            <span v-for="(_word, i) in text">
+                <span v-if="index==i">
+                    <span v-if="showAnswer">
+                        <span v-if="correct" class="correct">[[ _word ]]&nbsp;</span>
+                        <span v-else class="incorrect">[[ _word ]]&nbsp;</span>
+                    </span>
+                    <span v-else>[[ "*".repeat(_word.length) ]]&nbsp;</span>
                 </span>
-                <span v-else>[[ "*".repeat(_word.length) ]]&nbsp;</span>
+                <span v-else="index==i">[[ _word ]]&nbsp;</span>
             </span>
-            <span v-else="index==i">[[ _word ]]&nbsp;</span>
-        </span>
+        </div>
         <div v-for="postLine in postLines">
             [[ postLine.text ]]
         </div>
