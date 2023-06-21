@@ -23,6 +23,32 @@
         display: flex;
         flex-wrap: wrap;
     }
+
+    .footer {
+        position: absolute;
+        bottom: 0px;
+        width: 95%;
+    }
+
+    input {
+        width: 100%;
+        height: 15px;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+    }
+
+    button {
+        width: 100px;
+        height: 50px;
+        font-size: 15px;
+    }
+
+    #app {
+        font-size: 20px;
+    }
 </style>
 
 <div id="app">
@@ -48,17 +74,21 @@
     </div>
     <div class="title">@[[ line.title ]]</div>
     <hr>
-    <input v-model="answer" @keyup.enter="judge" />
-    <span v-if="showAnswer">
-        <button @click="fetchLine">next</button>
-    </span>
-    <span v-else>
-        <button @click="addLines">hint</button>
-        <button @click="judge">answer</button>
-    </span>
     <div v-show="showAnswer">
         <span v-if="correct" class="correct">CORRECT</span>
         <span v-else class="incorrect">INCORRECT</span>
+    </div>
+    <div class="footer">
+        <input v-model="answer" @keyup.enter="judge" /><br>
+        <div class="buttons">
+            <div v-if="showAnswer">
+                <button @click="fetchLine">next</button>
+            </div>
+            <div v-else>
+                <button @click="addLines">hint</button>
+                <button @click="judge">answer</button>
+            </div>
+        </div>
     </div>
 </div>
 
