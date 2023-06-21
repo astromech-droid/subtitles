@@ -14,6 +14,7 @@
                 // "app.tests.tests.ParseVttTestCase",
                 // "app.tests.tests.ParseXmlTestCase",
                 // "app.tests.tests.FilterTestCase",
+                // "app.tests.tests.SenderTestCase",
                 "app/tests",
             ],
             "django": true,

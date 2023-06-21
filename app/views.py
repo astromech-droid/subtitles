@@ -1,6 +1,9 @@
+import json
+
 from django.forms.models import model_to_dict
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
+from django.views.decorators.csrf import csrf_exempt
 
 from app.models import Episode, Line
 
@@ -24,6 +27,27 @@ def episode(request, title):
     episode = Episode.objects.get(title=title)
     context = {"title": title, "lines": episode.lines.all()}
     return HttpResponse(template.render(context, request))
+
+
+@csrf_exempt
+def episode_api(request, title):
+    if request.method == "POST":
+        entries = []
+        episode = Episode.objects.get_or_create(title=title)
+        body = json.loads(request.body.decode("utf-8"))
+
+        lines = body["lines"]
+        line_count = episode[0].lines.count()
+
+        for i, line in enumerate(lines, line_count + 1):
+            timestamp, text = line
+            entries.append(
+                Line(episode=episode[0], timestamp=timestamp, text=text, line_number=i)
+            )
+
+        Line.objects.bulk_create(entries)
+
+        return HttpResponse(status=201)
 
 
 def line_api(request, title, line_number):

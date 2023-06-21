@@ -92,3 +92,15 @@ class LoaderTestCase(TestCase):
         filtered_value = settings.TEST_VTT_FILTERED_VALUE
         lines = loader.reload_subs(path, title)
         self.check(lines, title, filtered_value)
+
+
+"""
+from app.utils import sender
+
+class SenderTestCase(TestCase):
+    def test_send_lines(self):
+        lines = settings.TEST_VTT_FILTERED_VALUE
+        url = settings.TEST_EPISODE_API_URL
+        response = sender.send_lines(url, lines)
+        self.assertEqual(response.status_code, 201)
+"""
