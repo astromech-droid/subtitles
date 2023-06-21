@@ -2,7 +2,7 @@
 {% block content %}
 {% for episode in episodes %}
 <div>
-    <a href="{% url 'lines' episode.title %}">{{ episode.title }}</a>
+    <a href="{% url 'episode' episode.title %}">{{ episode.title }}</a>
 </div>
 {% endfor %}
 {% endblock content %}
