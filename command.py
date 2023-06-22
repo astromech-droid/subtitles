@@ -63,4 +63,4 @@ if __name__ == "__main__":
         print("    load <path> <title>")
         print("    bulk_load <dirname> <title>")
         print("    bulk_reload <dirname> <title>")
-        print("    send <dirname>")
+        print("    send <dirname> <url>")
