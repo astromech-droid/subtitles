@@ -1,6 +1,5 @@
 {% extends "app/base.html" %}
 {% block content %}
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <style>
     .title {
         color: gray;
@@ -16,7 +15,7 @@
     <div>
         <div v-for="line in lines">
             <span>[[ line.text ]]</span>
-            <a class="title" :href="'/app/episodes/'+line.title">@[[ line.title ]]</a>
+            <a class="title" :href="'/app/episodes/'+line.title+'/'+line.line_number">@[[ line.title ]]</a>
         </div>
     </div>
 </div>
