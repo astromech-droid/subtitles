@@ -62,3 +62,8 @@ TEST_VTT_EPISODE_TITLE = "test_vtt_s1e1"
 TEST_XML_EPISODE_TITLE = "test_xml_s1e1"
 
 TEST_EPISODE_API_URL = f"http://localhost:8000/app/api/episodes/{TEST_VTT_EPISODE_TITLE}/"
+
+TEST_WORDGUESSER_IGNORED = [
+    ("00:00:09.083", "(THEME MUSIC PLAYING)"),
+    ("00:00:09.083", "[THEME MUSIC PLAYING]"),
+]

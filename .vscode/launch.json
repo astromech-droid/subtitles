@@ -15,8 +15,10 @@
                 // "app.tests.utils.ParseXmlTestCase",
                 // "app.tests.utils.FilterTestCase",
                 // "app.tests.utils.SenderTestCase",
+                // "app.tests.views.WordguesserApiTestCase",
                 "app/tests",
                 "utils",
+                "views",
             ],
             "django": true,
             "justMyCode": true

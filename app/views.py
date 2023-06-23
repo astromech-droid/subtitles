@@ -94,9 +94,11 @@ def wordguesser_api(request):
         Line.objects.filter(~Q(text__endswith="]"))
         .filter(~Q(text__endswith=")"))
         .order_by("?")
-        .first()
     )
-    line = model_to_dict(_line)
-    line["title"] = _line.episode.title
+    if len(_line) > 0:
+        line = model_to_dict(_line.first())
+        line["title"] = _line.first().episode.title
+    else:
+        line = {}
 
     return JsonResponse({"line": line})
