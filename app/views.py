@@ -1,5 +1,6 @@
 import json
 
+from django.db.models import Q
 from django.forms.models import model_to_dict
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
@@ -85,7 +86,12 @@ def wordguesser(request):
 
 
 def wordguesser_api(request):
-    _line = Line.objects.order_by("?")[0]
+    _line = (
+        Line.objects.filter(~Q(text__endswith="]"))
+        .filter(~Q(text__endswith=")"))
+        .order_by("?")
+        .first()
+    )
     line = model_to_dict(_line)
     line["title"] = _line.episode.title
 
