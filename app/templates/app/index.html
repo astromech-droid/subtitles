@@ -1,12 +1,19 @@
 {% extends "app/base.html" %}
 {% block content %}
-<div>
-    <a href="{% url 'episodes' %}">episodes</a>
-</div>
-<div>
-    <a href="{% url 'search' %}">search</a>
-</div>
-<div>
-    <a href="{% url 'wordguesser' %}">wordguesser</a>
+<style>
+    #content a {
+        font-size: 18px;
+    }
+</style>
+<div id="content">
+    <div>
+        <a href="{% url 'episodes' %}">episodes</a>
+    </div>
+    <div>
+        <a href="{% url 'search' %}">search</a>
+    </div>
+    <div>
+        <a href="{% url 'wordguesser' %}">wordguesser</a>
+    </div>
 </div>
 {% endblock content %}
