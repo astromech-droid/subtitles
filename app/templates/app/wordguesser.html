@@ -57,7 +57,7 @@
                         <span v-if="correct" class="correct">[[ _word ]]&nbsp;</span>
                         <span v-else class="incorrect">[[ _word ]]&nbsp;</span>
                     </span>
-                    <span v-else>[[ "*".repeat(_word.length) ]]&nbsp;</span>
+                    <span v-else>[[ wordHidden ]]&nbsp;</span>
                 </span>
                 <span v-else="index==i">[[ _word ]]&nbsp;</span>
             </span>
@@ -92,8 +92,9 @@
             const postLines = ref([])
             const correct = ref(false)
             const showAnswer = ref(false)
+            const wordHidden = ref("")
             return {
-                line, preLines, postLines, correct, showAnswer
+                line, preLines, postLines, correct, showAnswer, wordHidden
             }
         },
         delimiters: ["[[", "]]"],
@@ -107,7 +108,13 @@
                 // pick question word
                 this.text = this.line.text.split(" ")
                 this.index = this.getRandomInt(this.text.length)
-                this.word = this.text[this.index]
+
+                wordFull = this.text[this.index]
+                wordFullInverted = wordFull.split("").reverse().join("")
+                start = wordFull.search(/([a-z]|[A-Z])/)
+                end = wordFull.length - wordFullInverted.search(/([a-z]|[A-Z])/)
+                this.word = wordFull.substring(start, end)
+                this.wordHidden = wordFull.replace(this.word, "*".repeat(this.word.length))
 
                 // hide answer
                 this.showAnswer = false
