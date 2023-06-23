@@ -5,6 +5,7 @@
     .title {
         color: gray;
         font-size: 10px;
+        padding-left: 5px;
     }
 </style>
 
@@ -15,7 +16,7 @@
     <div>
         <div v-for="line in lines">
             <span>[[ line.text ]]</span>
-            <span class="title">@[[ line.title ]]</span>
+            <a class="title" :href="'/app/episodes/'+line.title">@[[ line.title ]]</a>
         </div>
     </div>
 </div>
