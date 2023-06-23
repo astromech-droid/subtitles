@@ -73,12 +73,9 @@
         <span v-else class="incorrect">INCORRECT</span>
     </div>
     <div>
-        <input v-model="answer" @keyup.enter="judge" /><br>
+        <input v-model="answer" @keyup.enter="commit" /><br>
         <div class="buttons">
-            <div v-if="showAnswer">
-                <button @click="fetchLine">next</button>
-            </div>
-            <div v-else>
+            <div v-if="!showAnswer">
                 <button @click="addLines">hint</button>
             </div>
         </div>
@@ -127,6 +124,13 @@
             },
             getRandomInt(max) {
                 return Math.floor(Math.random() * max);
+            },
+            commit() {
+                if (this.showAnswer) {
+                    this.fetchLine()
+                } else {
+                    this.judge()
+                }
             },
             focusInput() {
                 setTimeout(() => {
