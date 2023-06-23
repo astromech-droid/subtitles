@@ -15,7 +15,7 @@ def load_subs(path: str, title: str):
     elif extension == "xml":
         lines = parser_xml.parse_xml(path)
 
-    lines = filter.merge(lines)
+    lines = filter.filter(lines)
     line_count = Line.objects.filter(episode__title=title).count()
 
     for i, line in enumerate(lines, line_count + 1):

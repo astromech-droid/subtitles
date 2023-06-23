@@ -19,3 +19,9 @@ def merge(lines) -> list[tuple[str]]:
             starttime_buffer.clear()
 
     return _lines
+
+
+def filter(lines) -> list[tuple[str]]:
+    lines = merge(lines)
+
+    return lines

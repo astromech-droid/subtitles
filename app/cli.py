@@ -28,7 +28,7 @@ def read_lines(path):
     elif extension == "xml":
         lines = parser_xml.parse_xml(path)
 
-    lines = filter.merge(lines)
+    lines = filter.filter(lines)
 
     return lines
 
