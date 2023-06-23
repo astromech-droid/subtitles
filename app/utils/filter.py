@@ -21,7 +21,19 @@ def merge(lines) -> list[tuple[str]]:
     return _lines
 
 
+def removeTag(lines) -> list[tuple[str]]:
+    _lines = []
+
+    for line in lines:
+        timestamp, text = line
+        _text = text.replace("<i>", "").replace("</i>", "")
+        _lines.append((timestamp, _text))
+
+    return _lines
+
+
 def filter(lines) -> list[tuple[str]]:
+    lines = removeTag(lines)
     lines = merge(lines)
 
     return lines

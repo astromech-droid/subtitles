@@ -34,14 +34,18 @@ TEST_VTT_VALUE = [
     ("00:34:38.000", "young lady."),
     ("00:18:55.520", "After all,"),
     ("00:18:57.880", "she loves pi."),
+    ("00:03:10.457", "<i>Simulation terminated.</i>"),
+    ("00:03:10.457", "<i>Simulation terminated.</i>"),
 ]
 TEST_VTT_FILTERED_VALUE = [
     ("00:00:09.083", "(THEME MUSIC PLAYING)"),
-    ("00:00:31.750", "BONNIE: <i>We're real proud of you, Judy.</i>"),
+    ("00:00:31.750", "BONNIE: We're real proud of you, Judy."),
     ("00:00:33.333", "STU: Yeah, scared too."),
     ("00:00:33.333", "BONNIE: Yes."),
     ("00:34:36.120", "Timeliness means something in the world of theater, young lady."),
     ("00:18:55.520", "After all, she loves pi."),
+    ("00:03:10.457", "Simulation terminated."),
+    ("00:03:10.457", "Simulation terminated."),
 ]
 TEST_VTT_URL = "https://raw.githubusercontent.com/astromech-droid/subtitles/main/app/tests/data/test.vtt"  # noqa: E501
 
