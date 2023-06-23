@@ -122,9 +122,18 @@
                 // clear post/pre lines 
                 this.preLines = []
                 this.postLines = []
+
+                // set cursor to input box and open keyboard
+                this.focusInput()
             },
             getRandomInt(max) {
                 return Math.floor(Math.random() * max);
+            },
+            focusInput() {
+                setTimeout(() => {
+                    input = document.querySelector("input")
+                    input.focus()
+                }, 100)
             },
             judge() {
                 if (this.answer == this.word) {
@@ -147,6 +156,9 @@
                 // Update array at the same time.
                 this.preLines.unshift(json["line"])
                 this.postLines.push(_json["line"])
+
+                // set cursor to input box and open keyboard
+                this.focusInput()
             }
         },
         mounted() {
