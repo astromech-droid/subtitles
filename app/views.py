@@ -23,10 +23,14 @@ def episodes(request):
     return HttpResponse(template.render(context, request))
 
 
-def episode(request, title):
+def episode(request, title, line_number=0):
     template = loader.get_template("app/lines.html")
     episode = Episode.objects.get(title=title)
-    context = {"title": title, "lines": episode.lines.all()}
+    context = {
+        "title": title,
+        "lines": episode.lines.all(),
+        "line_number": int(line_number),
+    }
     return HttpResponse(template.render(context, request))
 
 

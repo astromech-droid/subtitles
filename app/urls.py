@@ -6,6 +6,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("episodes/", views.episodes, name="episodes"),
     path("episodes/<title>/", views.episode, name="episode"),
+    path("episodes/<title>/<line_number>/", views.episode, name="episode_line"),
     path("api/episodes/<title>/", views.episode_api, name="episode_api"),
     path("api/episodes/<title>/<line_number>/", views.line_api, name="line_api"),
     path("search/", views.search, name="search"),

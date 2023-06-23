@@ -1,6 +1,5 @@
 {% extends "app/base.html" %}
 {% block content %}
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <style>
     .wordHidden {
         color: #93D7B7;
@@ -76,7 +75,8 @@
             [[ postLine.text ]]
         </div>
     </div>
-    <div class="title">@[[ line.title ]]</div>
+    <a class="title" :href="'/app/episodes/'+line.title+'/'+line.line_number" target="_blank">@[[ line.title
+        ]]</a>
     <hr>
     <div v-if="showAnswer">
         <span v-if="correct" class="correct">CORRECT</span>
