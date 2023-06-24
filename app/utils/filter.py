@@ -26,7 +26,7 @@ def removeTag(lines) -> list[tuple[str]]:
 
     for line in lines:
         timestamp, text = line
-        _text = text.replace("<i>", "").replace("</i>", "")
+        _text = text.replace("<i>", "").replace("</i>", "").strip()
         _lines.append((timestamp, _text))
 
     return _lines
