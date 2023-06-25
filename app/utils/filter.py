@@ -1,7 +1,7 @@
 import re
 
 
-def merge(lines) -> list[tuple[str]]:
+def merge_tail(lines) -> list[tuple[str]]:
     _lines: list[tuple[str]] = []
     starttime_buffer: list[str] = []
     text_buffer: list[str] = []
@@ -21,7 +21,21 @@ def merge(lines) -> list[tuple[str]]:
     return _lines
 
 
-def removeTag(lines) -> list[tuple[str]]:
+def merge_head(lines) -> list[tuple[str]]:
+    _lines: list[tuple[str]] = []
+
+    for starttime, text in lines:
+        if re.match(r"^[a-z]", text):
+            _starttime, _text = _lines.pop()
+            _lines.append((_starttime, f"{_text} {text}"))
+
+        else:
+            _lines.append((starttime, text))
+
+    return _lines
+
+
+def remove_tag(lines) -> list[tuple[str]]:
     _lines = []
 
     for line in lines:
@@ -33,7 +47,8 @@ def removeTag(lines) -> list[tuple[str]]:
 
 
 def filter(lines) -> list[tuple[str]]:
-    lines = removeTag(lines)
-    lines = merge(lines)
+    lines = remove_tag(lines)
+    lines = merge_tail(lines)
+    lines = merge_head(lines)
 
     return lines
