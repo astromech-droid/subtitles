@@ -71,6 +71,8 @@ def search(request):
 
 
 def search_api(request):
+    import re
+
     lines = []
     regex = request.GET["regex"]
     _lines = Line.objects.filter(text__iregex=regex)
@@ -78,6 +80,7 @@ def search_api(request):
     for _line in _lines:
         line = model_to_dict(_line)
         line["title"] = _line.episode.title
+        line["match"] = re.compile(f"(.*)({regex})(.*)", 2).match(line["text"]).groups()
         lines.append(line)
 
     return JsonResponse({"lines": lines})
