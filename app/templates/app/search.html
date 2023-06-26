@@ -18,6 +18,9 @@
             <a class="title" :href="'/app/episodes/'+line.title+'/'+line.line_number" target="_blank">@[[ line.title
                 ]]</a>
         </div>
+        <div v-if="notFound">
+            Not Found
+        </div>
     </div>
 </div>
 
@@ -38,6 +41,7 @@
                 const response = await fetch(url)
                 const json = await response.json()
                 this.lines = json["lines"]
+                this.lines.length == 0 ? this.notFound = true : this.notFound = false
             }
         }
     }).mount('#app')
