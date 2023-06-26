@@ -2,7 +2,6 @@ import math
 import re
 
 from bs4 import BeautifulSoup
-from bs4.element import NavigableString, Tag
 
 
 def parse_xml(path: str) -> list[tuple[str]]:
@@ -37,21 +36,18 @@ def _get_starttime(element) -> str:
 
 
 def _get_texts(element) -> list[str]:
-    def __recurse(element) -> list[str]:
-        _text: list[str] = []
+    texts: list[str] = []
+    text: str = ""
 
-        for c in element.contents:
-            if type(c) is NavigableString:
-                if c.text != "":
-                    _text.append(c.text)
+    for i, content in enumerate(element.contents, 1):
+        if content.name == "br":
+            texts.append(text)
+            text = ""
 
-            elif type(c) is Tag:
-                if c.text != "":
-                    _: str = " ".join(__recurse(c))
-                    _text.append(_)
+        else:
+            text = text + content.text
 
-        return _text
-
-    texts: list[str] = __recurse(element)
+        if i == len(element.contents):
+            texts.append(text)
 
     return texts

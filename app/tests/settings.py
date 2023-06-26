@@ -12,8 +12,9 @@ TEST_XML_VALUE = [
     ("00:02:15.292", "I live at 308 Negra Arroyo Lane,"),
     ("00:02:18.250", "Albuquerque, New Mexico, 87104."),
     ("01:00:08.980", "Appreciate it."),
-    ("00:41:15.473", "[Phil] "),
-    ("00:41:15.473", "Come in, Mitch."),
+    ("00:41:15.473", "[Phil] Come in, Mitch."),
+    ("00:01:10.821", "-[meowing]"),
+    ("00:01:10.821", "-But the love of my life is Momohiki!"),
 ]
 TEST_XML_FILTERED_VALUE = [
     ("00:13:25.000", "-Leave town for adventure."),
@@ -23,8 +24,9 @@ TEST_XML_FILTERED_VALUE = [
     ("00:05:32.000", "I don't want him dicking you around tonight."),
     ("00:02:15.292", "I live at 308 Negra Arroyo Lane, Albuquerque, New Mexico, 87104."),
     ("01:00:08.980", "Appreciate it."),
-    ("00:41:15.473", "[Phil]"),
-    ("00:41:15.473", "Come in, Mitch."),
+    ("00:41:15.473", "[Phil] Come in, Mitch."),
+    ("00:01:10.821", "-[meowing]"),
+    ("00:01:10.821", "-But the love of my life is Momohiki!"),
 ]
 
 TEST_VTT_PATH = "app/tests/data/test.vtt"
