@@ -15,6 +15,7 @@ TEST_XML_VALUE = [
     ("00:41:15.473", "[Phil] Come in, Mitch."),
     ("00:01:10.821", "-[meowing]"),
     ("00:01:10.821", "-But the love of my life is Momohiki!"),
+    ("00:18:37.408", "[Anzu] So far, the sleeping arrangements have been kinda nice."),
 ]
 TEST_XML_FILTERED_VALUE = [
     ("00:13:25.000", "-Leave town for adventure."),
@@ -27,6 +28,7 @@ TEST_XML_FILTERED_VALUE = [
     ("00:41:15.473", "[Phil] Come in, Mitch."),
     ("00:01:10.821", "-[meowing]"),
     ("00:01:10.821", "-But the love of my life is Momohiki!"),
+    ("00:18:37.408", "[Anzu] So far, the sleeping arrangements have been kinda nice."),
 ]
 
 TEST_VTT_PATH = "app/tests/data/test.vtt"

@@ -36,18 +36,26 @@ def _get_starttime(element) -> str:
 
 
 def _get_texts(element) -> list[str]:
-    texts: list[str] = []
-    text: str = ""
+    def _recurse(element) -> list[str]:
+        texts: list[str] = []
+        text: str = ""
 
-    for i, content in enumerate(element.contents, 1):
-        if content.name == "br":
-            texts.append(text)
-            text = ""
+        for i, content in enumerate(element.contents, 1):
+            if content.name == "span":
+                _texts = _recurse(content)
+                text += str(" ").join(_texts)
 
-        else:
-            text = text + content.text
+            elif content.name == "br":
+                texts.append(text)
+                text = ""
 
-        if i == len(element.contents):
-            texts.append(text)
+            elif content.name is None:
+                text += content.text
 
-    return texts
+            if i == len(element.contents):
+                texts.append(text)
+                text = ""
+
+        return texts
+
+    return _recurse(element)
