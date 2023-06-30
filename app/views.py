@@ -105,3 +105,9 @@ def wordguesser_api(request):
         line = {}
 
     return JsonResponse({"line": line})
+
+
+def assemble(request):
+    template = loader.get_template("app/assemble.html")
+    context = {}
+    return HttpResponse(template.render(context, request))

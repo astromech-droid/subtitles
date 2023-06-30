@@ -1,0 +1,123 @@
+{% extends "app/base.html" %}
+{% block content %}
+<style>
+    .title {
+        color: gray;
+        font-size: 10px;
+        padding-left: 5px;
+    }
+
+    .word {
+        cursor: pointer;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .correct {
+        color: green;
+    }
+
+    .incorrect {
+        color: red;
+    }
+</style>
+
+<div id="app">
+    answer:
+    <span v-for="(word, idx) in answer">
+        <span :id="idx + 1000" class="word" @click="push($event, words)">[[ word ]]&nbsp;</span>
+    </span>
+    <hr>
+    <div v-for="(word, idx) in words">
+        <span :id="idx" class="word" @click="push($event, answer)">[[ word ]]</span>
+    </div>
+    <button v-if="!showAnswer" @click="judge">judge</button>
+    <button v-else @click="fetchLine">next</button>
+
+    <div v-if="showAnswer">
+        <div>
+            <span>[[ line.text ]]</span>
+            <a class="title" :href="'/app/episodes/'+line.title+'/'+line.line_number" target="_blank">@[[ line.title
+                ]]</a>
+        </div>
+        <span v-if="correct" class="correct">CORRECT</span>
+        <span v-else class="incorrect">INCORRECT</span>
+    </div>
+</div>
+
+<script>
+    const { createApp, ref } = Vue
+
+    createApp({
+        setup() {
+            const line = ref({})
+            const words = ref([])
+            const answer = ref([])
+            const correct = ref(false)
+            const showAnswer = ref(false)
+
+            return {
+                line, words, answer, correct, showAnswer
+            }
+        },
+        delimiters: ["[[", "]]"],
+        methods: {
+            async fetchLine() {
+                const url = `${location.protocol}//${location.host}{% url 'wordguesser_api' %}`
+                const response = await fetch(url)
+                const json = await response.json()
+                this.line = json["line"]
+
+                // clean display
+                this.answer = []
+                this.showAnswer = false
+
+                const spans = document.querySelectorAll("span")
+                const spanArray = [...document.querySelectorAll("span")]
+
+                spanArray.forEach(span => {
+                    if (span.classList.contains("hide")) {
+                        span.classList.toggle("hide")
+                    }
+                })
+
+                // set words
+                this.words = this.line.text.split(" ")
+
+                // shuffle
+                this.shuffle()
+            },
+            getRandomInt(max) {
+                return Math.floor(Math.random() * max);
+            },
+            shuffle() {
+                for (let i = this.words.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    const temp = this.words[i];
+                    this.words[i] = this.words[j];
+                    this.words[j] = temp;
+                }
+            },
+            push(event, to) {
+                const id = event.target.id
+                const text = event.target.innerText
+
+                document.getElementById(id).classList.toggle("hide")
+                to.push(text)
+            },
+            judge() {
+                text = this.line.text
+                answer = this.answer.join(" ")
+
+                text == answer ? this.correct = true : this.correct = false
+                this.showAnswer = true
+            }
+        },
+        mounted() {
+            this.fetchLine()
+        }
+    }).mount('#app')
+</script>
+{% endblock content %}

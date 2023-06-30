@@ -11,6 +11,7 @@ urlpatterns = [
     path("api/episodes/<title>/<line_number>/", views.line_api, name="line_api"),
     path("search/", views.search, name="search"),
     path("wordguesser/", views.wordguesser, name="wordguesser"),
+    path("assemble/", views.assemble, name="assemble"),
     path("api/search/", views.search_api, name="search_api"),
     path("api/wordguesser/", views.wordguesser_api, name="wordguesser_api"),
 ]
