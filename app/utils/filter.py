@@ -25,7 +25,11 @@ def merge_head(lines) -> list[tuple[str]]:
     _lines: list[tuple[str]] = []
 
     for starttime, text in lines:
-        if re.match(r"^[a-z]", text):
+        if len(_lines) == 0:
+            # 一行目が小文字から始まる場合にIndexErrorを出さないため
+            _lines.append((starttime, text))
+
+        elif re.match(r"^[a-z]", text):
             _starttime, _text = _lines.pop()
             _lines.append((_starttime, f"{_text} {text}"))
 
