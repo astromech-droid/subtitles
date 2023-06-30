@@ -11,6 +11,10 @@
         /* color: #0C4B33; */
         color: red;
     }
+
+    .text {
+        cursor: pointer;
+    }
 </style>
 
 <div id="app">
@@ -19,9 +23,11 @@
     <a href="https://docs.python.org/3/library/re.html#regular-expression-syntax" target="_blank">syntax</a>
     <div>
         <div v-for="line in lines">
-            <span>[[ line.match[0] ]]</span>
-            <span class="match">[[ line.match[1] ]]</span>
-            <span>[[ line.match[2] ]]</span>
+            <span class="text" @click="copy(line.text)">
+                <span>[[ line.match[0] ]]</span>
+                <span class="match">[[ line.match[1] ]]</span>
+                <span>[[ line.match[2] ]]</span>
+            </span>
             <a class="title" :href="'/app/episodes/'+line.title+'/'+line.line_number" target="_blank">@[[ line.title
                 ]]</a>
         </div>
@@ -49,6 +55,10 @@
                 const json = await response.json()
                 this.lines = json["lines"]
                 this.lines.length == 0 ? this.notFound = true : this.notFound = false
+            },
+            copy(text) {
+                navigator.clipboard.writeText(text)
+                console.log(text)
             }
         }
     }).mount('#app')
