@@ -60,6 +60,10 @@
                 navigator.clipboard.writeText(text)
                 console.log(text)
             }
+        },
+        mounted() {
+            input = document.querySelector("input")
+            input.focus()
         }
     }).mount('#app')
 </script>
