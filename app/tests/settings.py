@@ -47,6 +47,7 @@ TEST_VTT_VALUE = [
     ("00:03:10.457", "<i>Simulation terminated.</i>"),
     ("01:08:39.875", "Wait a minute. You turned on the TV"),
     ("01:08:39.875", "last night, not Jessie."),
+    ("00:17:40.185", "And they're nice enough to feed us,"),
 ]
 TEST_VTT_FILTERED_VALUE = [
     ("00:17:42.270", "but it still feels kind of warped to me."),
@@ -59,6 +60,7 @@ TEST_VTT_FILTERED_VALUE = [
     ("00:03:10.457", "Simulation terminated."),
     ("00:03:10.457", "Simulation terminated."),
     ("01:08:39.875", "Wait a minute. You turned on the TV last night, not Jessie."),
+    ("00:17:40.185", "And they're nice enough to feed us,"),
 ]
 TEST_VTT_URL = "https://raw.githubusercontent.com/astromech-droid/subtitles/main/app/tests/data/test.vtt"  # noqa: E501
 

@@ -6,7 +6,8 @@ def merge_tail(lines) -> list[tuple[str]]:
     starttime_buffer: list[str] = []
     text_buffer: list[str] = []
 
-    for starttime, text in lines:
+    for idx, line in enumerate(lines, 1):
+        (starttime, text) = line
         text_buffer.append(text)
 
         if len(starttime_buffer) == 0:
@@ -17,6 +18,10 @@ def merge_tail(lines) -> list[tuple[str]]:
             _lines.append((starttime_buffer.pop(), text))
             text_buffer.clear()
             starttime_buffer.clear()
+
+        elif idx == len(lines):
+            text: str = " ".join(text_buffer)
+            _lines.append((starttime_buffer.pop(), text))
 
     return _lines
 
